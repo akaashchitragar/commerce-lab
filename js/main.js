@@ -3,6 +3,9 @@
  */
 
 document.addEventListener('DOMContentLoaded', function() {
+    // Initialize preloader
+    initPreloader();
+    
     // Initialize fade elements
     initFadeElements();
     
@@ -47,11 +50,67 @@ document.addEventListener('DOMContentLoaded', function() {
     // Initialize mobile about layout
     setupMobileAboutLayout();
     
+    // Initialize back-to-top button
+    initBackToTopButton();
+    
     // Setup resize event listener
     window.addEventListener('resize', function() {
         updateViewportHeight();
     });
 });
+
+/**
+ * Initialize preloader functionality
+ */
+function initPreloader() {
+    const preloader = document.getElementById('preloader');
+    
+    if (!preloader) return;
+    
+    // Force body to not scroll while preloader is active
+    document.body.style.overflow = 'hidden';
+    
+    // Hide preloader after window loads with a minimum display time
+    const minimumLoadingTime = 2500; // Minimum time in milliseconds to show the preloader
+    const startTime = new Date().getTime();
+    
+    window.addEventListener('load', function() {
+        const currentTime = new Date().getTime();
+        const elapsedTime = currentTime - startTime;
+        const remainingTime = Math.max(0, minimumLoadingTime - elapsedTime);
+        
+        // Ensure preloader is displayed for at least the minimum time
+        setTimeout(function() {
+            preloader.classList.add('hide');
+            
+            // Re-enable scrolling after preloader is hidden
+            setTimeout(function() {
+                document.body.style.overflow = '';
+                
+                // Remove from DOM after transition completes
+                if (preloader.parentNode) {
+                    preloader.parentNode.removeChild(preloader);
+                }
+            }, 600); // Match the CSS transition duration
+        }, remainingTime);
+    });
+    
+    // Fallback: Hide preloader after a maximum time (5 seconds) in case load event doesn't trigger
+    setTimeout(function() {
+        if (preloader && !preloader.classList.contains('hide')) {
+            preloader.classList.add('hide');
+            
+            // Re-enable scrolling
+            setTimeout(function() {
+                document.body.style.overflow = '';
+                
+                if (preloader.parentNode) {
+                    preloader.parentNode.removeChild(preloader);
+                }
+            }, 600);
+        }
+    }, 5000);
+}
 
 /**
  * Initialize fade in animations for elements
@@ -839,4 +898,38 @@ function setupMobileAboutLayout() {
     // Run on load and resize
     adjustAboutLayout();
     window.addEventListener('resize', adjustAboutLayout);
+}
+
+/**
+ * Initialize back-to-top button functionality
+ */
+function initBackToTopButton() {
+    const backToTopButton = document.getElementById('back-to-top');
+    const scrollThreshold = 300; // Show button after user scrolls this many pixels
+    
+    // Show/hide the button based on scroll position
+    function toggleBackToTopButton() {
+        if (window.scrollY > scrollThreshold) {
+            backToTopButton.classList.add('show');
+        } else {
+            backToTopButton.classList.remove('show');
+        }
+    }
+    
+    // Scroll to top when button is clicked
+    backToTopButton.addEventListener('click', function(e) {
+        e.preventDefault();
+        
+        // Smooth scroll to top
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    });
+    
+    // Add scroll event listener
+    window.addEventListener('scroll', toggleBackToTopButton);
+    
+    // Check initial scroll position
+    toggleBackToTopButton();
 } 

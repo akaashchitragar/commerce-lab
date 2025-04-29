@@ -37,7 +37,12 @@
         
         <div class="footer-bottom">
             <p>&copy; <?php echo date('Y'); ?> Commerce Lab. All Rights Reserved.</p>
-            <p>Designed by <a href="#" target="_blank" rel="noopener">Nakshatra Technologies</a></p>
+            <p>Designed & Developed By <a href="https://webart4u.com/" target="_blank" rel="noopener" style="color: #FF6F00;">Webart4u</a></p>
         </div>
     </div>
-</footer> 
+</footer>
+
+<!-- Back to Top Button -->
+<a href="#" id="back-to-top" class="back-to-top" aria-label="Back to top">
+    <i class="fas fa-arrow-up"></i>
+</a> 

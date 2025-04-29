@@ -87,6 +87,18 @@ $metaDescription = "Commerce Lab offers hands-on learning experiences in ERP sys
     </script>
 </head>
 <body>
+    <!-- Preloader -->
+    <div id="preloader">
+        <div class="logo">
+            <img src="images/logo.png" alt="Commerce Lab Logo" width="180">
+        </div>
+        <div class="spinner">
+            <div class="dot1"></div>
+            <div class="dot2"></div>
+        </div>
+        <div class="preloader-text">Loading...</div>
+    </div>
+    
     <!-- Header Section -->
     <?php include 'includes/header.php'; ?>
     
