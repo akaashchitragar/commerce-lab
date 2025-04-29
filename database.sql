@@ -1,10 +1,10 @@
 -- Commerce Lab Database Setup
 
 -- Create database if not exists
-CREATE DATABASE IF NOT EXISTS commerce_lab CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+CREATE DATABASE IF NOT EXISTS dcwacvni_commerce_lab CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 -- Use the database
-USE commerce_lab;
+USE dcwacvni_commerce_lab;
 
 -- Contact form submissions table
 CREATE TABLE IF NOT EXISTS contact_submissions (

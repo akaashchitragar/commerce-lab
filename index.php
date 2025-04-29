@@ -2,9 +2,9 @@
 // Database configuration
 $dbConfig = [
     'host' => 'localhost',
-    'username' => 'root',
-    'password' => '',
-    'database' => 'commerce_lab'
+    'username' => 'dcwacvni',
+    'password' => '!T~(aJ9gsDlX',
+    'database' => 'dcwacvni_commerce_lab'
 ];
 
 // Page title and meta description for SEO

@@ -7,9 +7,9 @@
 
 // Database configuration
 $host = 'localhost';
-$dbname = 'commerce_lab';
-$username = 'root';
-$password = '';
+$dbname = 'dcwacvni_commerce_lab';
+$username = 'dcwacvni';
+$password = '!T~(aJ9gsDlX';
 $charset = 'utf8mb4';
 
 // DSN (Data Source Name)
