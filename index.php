@@ -23,18 +23,18 @@ $metaDescription = "Commerce Lab offers hands-on learning experiences in ERP sys
     <!-- Open Graph Tags -->
     <meta property="og:title" content="<?php echo $pageTitle; ?>">
     <meta property="og:description" content="<?php echo $metaDescription; ?>">
-    <meta property="og:image" content="https://yourwebsite.com/images/commerce-lab-og.jpg">
-    <meta property="og:url" content="https://yourwebsite.com">
+    <meta property="og:image" content="https://commercelab.in/images/commerce-lab-og.jpg">
+    <meta property="og:url" content="https://commercelab.in">
     <meta property="og:type" content="website">
     
     <!-- Twitter Card Tags -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="<?php echo $pageTitle; ?>">
     <meta name="twitter:description" content="<?php echo $metaDescription; ?>">
-    <meta name="twitter:image" content="https://yourwebsite.com/images/commerce-lab-og.jpg">
+    <meta name="twitter:image" content="https://commercelab.in/images/commerce-lab-og.jpg">
     
     <!-- Canonical URL -->
-    <link rel="canonical" href="https://yourwebsite.com">
+    <link rel="canonical" href="https://commercelab.in">
     
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -62,8 +62,8 @@ $metaDescription = "Commerce Lab offers hands-on learning experiences in ERP sys
       "@context": "https://schema.org",
       "@type": "Organization",
       "name": "Commerce Lab",
-      "url": "https://yourwebsite.com",
-      "logo": "https://yourwebsite.com/images/logo.svg",
+      "url": "https://commercelab.in",
+      "logo": "https://commercelab.in/images/logo.svg",
       "description": "Commerce Lab offers hands-on learning experiences in ERP systems and business process simulation.",
       "address": {
         "@type": "PostalAddress",
@@ -743,7 +743,7 @@ $metaDescription = "Commerce Lab offers hands-on learning experiences in ERP sys
                     <div class="contact-item">
                         <i class="fas fa-envelope"></i>
                         <div>
-                            <p>info@commercelab.com</p>
+                            <p>info@commercelab.in</p>
                         </div>
                     </div>
                     

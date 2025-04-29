@@ -49,7 +49,7 @@ CREATE TABLE IF NOT EXISTS users (
 -- Create default admin user (password is 'admin123' - should be changed immediately)
 INSERT INTO users (username, password, email, full_name, role, created_at, status)
 VALUES 
-('admin', '$2y$10$qw7Hn94finshwE3.oMhMEucTfOzx7zNddFNT8M8mpJS7e8IOVvFnS', 'admin@commercelab.com', 'Administrator', 'admin', NOW(), 'active');
+('admin', '$2y$10$qw7Hn94finshwE3.oMhMEucTfOzx7zNddFNT8M8mpJS7e8IOVvFnS', 'admin@commercelab.in', 'Administrator', 'admin', NOW(), 'active');
 
 -- Services table (for dynamic content)
 CREATE TABLE IF NOT EXISTS services (

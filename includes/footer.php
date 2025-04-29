@@ -29,7 +29,7 @@
                     <address>
                         <p><i class="fas fa-map-marker-alt"></i> 123 Business Avenue, Technology Park, Your City, ST 12345</p>
                         <p><i class="fas fa-phone-alt"></i> +1 (234) 567-8901</p>
-                        <p><i class="fas fa-envelope"></i> info@commercelab.com</p>
+                        <p><i class="fas fa-envelope"></i> info@commercelab.in</p>
                     </address>
                 </div>
             </div>
