@@ -15,24 +15,45 @@
             
             <!-- Navbar Content -->
             <div class="collapse navbar-collapse" id="navbarContent">
+                <!-- Close Button for Mobile Menu -->
+                <div class="mobile-menu-close d-lg-none" data-bs-toggle="collapse" data-bs-target="#navbarContent"></div>
+                
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link" href="#about">About</a>
+                        <a class="nav-link" href="#about">
+                            <i class="fas fa-info-circle d-lg-none"></i>
+                            About
+                        </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#services">Modules</a>
+                        <a class="nav-link" href="#services">
+                            <i class="fas fa-cubes d-lg-none"></i>
+                            Modules
+                        </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#features">Lab Features</a>
+                        <a class="nav-link" href="#features">
+                            <i class="fas fa-star d-lg-none"></i>
+                            Lab Features
+                        </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#training">Training</a>
+                        <a class="nav-link" href="#training">
+                            <i class="fas fa-graduation-cap d-lg-none"></i>
+                            Training
+                        </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#testimonials">Testimonials</a>
+                        <a class="nav-link" href="#testimonials">
+                            <i class="fas fa-quote-right d-lg-none"></i>
+                            Testimonials
+                        </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#contact">Contact</a>
+                        <a class="nav-link" href="#contact">
+                            <i class="fas fa-envelope d-lg-none"></i>
+                            Contact
+                        </a>
                     </li>
                 </ul>
             </div>
