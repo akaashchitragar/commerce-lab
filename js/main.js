@@ -3,23 +3,28 @@
  */
 
 document.addEventListener('DOMContentLoaded', function() {
-    // Initialize fading elements
+    // Initialize fade elements
     initFadeElements();
     
-    // Header behavior on scroll
+    // Initialize sticky header
     initStickyHeader();
     
-    // Highlight active navigation on scroll
+    // Initialize active nav on scroll
     initActiveNavOnScroll();
     
-    // Initialize hover effects for cards
+    // Initialize card hover effects
     initCardHoverEffects();
     
-    // Smooth scrolling for anchor links
+    // Initialize smooth scrolling
     initSmoothScrolling();
     
-    // Handle form submissions
+    // Initialize contact form
     initContactForm();
+    
+    // Initialize Cal.com widget if present
+    if (document.querySelector('.cal-embed')) {
+        initCalComWidget();
+    }
     
     // Initialize image hover effects
     initImageHoverEffects();
@@ -36,8 +41,10 @@ document.addEventListener('DOMContentLoaded', function() {
     // Initialize count-up animation for stat numbers
     initCountUpAnimation();
     
-    // Call our mobile layout functions
+    // Initialize mobile hero layout
     setupMobileHeroLayout();
+    
+    // Initialize mobile about layout
     setupMobileAboutLayout();
     
     // Setup resize event listener

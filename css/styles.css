@@ -536,9 +536,7 @@ section {
 }
 
 .hero-content {
-    padding-right: 0;
-    text-align: center;
-    margin-bottom: 40px;
+    padding-right: 30px;
 }
 
 .hero-headline {
@@ -556,8 +554,6 @@ section {
     margin-bottom: 40px;
     max-width: 600px;
     color: var(--gray);
-    margin-left: auto;
-    margin-right: auto;
 }
 
 .hero-badge {
@@ -576,7 +572,6 @@ section {
     align-items: center;
     flex-wrap: wrap;
     gap: 20px;
-    justify-content: center;
 }
 
 .hero-second-btn {
@@ -606,7 +601,6 @@ section {
     flex-wrap: wrap;
     gap: 40px;
     margin-top: 60px;
-    justify-content: center;
 }
 
 .hero-stat-item {
