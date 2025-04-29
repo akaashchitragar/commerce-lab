@@ -557,25 +557,19 @@ $metaDescription = "Commerce Lab offers hands-on learning experiences in ERP sys
                             <img src="images/training-image.jpg" alt="Training Session at Commerce Lab" class="img-fluid training-image">
                         </div>
                         
-                        <div class="training-stats" data-aos="fade-up" data-aos-delay="200">
-                            <div class="row">
-                                <div class="col-4">
-                                    <div class="stat-box">
-                                        <div class="stat-number">95<span>%</span></div>
-                                        <div class="stat-label">Employment Rate</div>
-                                    </div>
+                        <div class="training-stats position-relative">
+                            <div class="stats-cards">
+                                <div class="stat-glass-card">
+                                    <div class="stat-number" data-count="95">0<span>%</span></div>
+                                    <div class="stat-label">Employment Rate</div>
                                 </div>
-                                <div class="col-4">
-                                    <div class="stat-box">
-                                        <div class="stat-number">45<span>+</span></div>
-                                        <div class="stat-label">Business Partners</div>
-                                    </div>
+                                <div class="stat-glass-card">
+                                    <div class="stat-number" data-count="45">0<span>+</span></div>
+                                    <div class="stat-label">Business Partners</div>
                                 </div>
-                                <div class="col-4">
-                                    <div class="stat-box">
-                                        <div class="stat-number">24<span>/7</span></div>
-                                        <div class="stat-label">Support Access</div>
-                                    </div>
+                                <div class="stat-glass-card">
+                                    <div class="stat-number" data-count="24">0<span>/7</span></div>
+                                    <div class="stat-label">Support Access</div>
                                 </div>
                             </div>
                         </div>
@@ -639,10 +633,6 @@ $metaDescription = "Commerce Lab offers hands-on learning experiences in ERP sys
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            
-                            <div class="training-cta">
-                                <a href="#contact" class="cta-button">Schedule a Free Demo Session</a>
                             </div>
                         </div>
                     </div>
@@ -731,78 +721,76 @@ $metaDescription = "Commerce Lab offers hands-on learning experiences in ERP sys
     <section id="contact" class="contact-section">
         <div class="container">
             <div class="section-header text-center" data-aos="fade-up">
+                <div class="section-badge">Contact Us</div>
                 <h2>Get In Touch</h2>
-                <p>Have questions or ready to book a session? We're here to help.</p>
+                <p>Have questions about our business simulation lab? We're here to help.</p>
             </div>
             
-            <div class="row">
-                <div class="col-lg-5" data-aos="fade-up" data-aos-delay="100">
-                    <div class="contact-info">
-                        <h3>Contact Information</h3>
-                        <div class="contact-item">
-                            <i class="fas fa-map-marker-alt"></i>
-                            <div>
-                                <p>123 Business Avenue, Technology Park<br>Your City, ST 12345</p>
+            <div class="contact-container" data-aos="fade-up" data-aos-delay="100">
+                <div class="contact-card contact-info">
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <p>123 Business Avenue, Technology Park<br>Your City, ST 12345</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-phone-alt"></i>
+                        <div>
+                            <p>+1 (234) 567-8901</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <div>
+                            <p>info@commercelab.com</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-divider"></div>
+                    
+                    <div class="contact-form">
+                        <form action="php/send-contact.php" method="post" id="contactForm">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" id="name" name="name" placeholder="Your Name *" required>
+                                </div>
+                                <div class="form-group">
+                                    <input type="email" class="form-control" id="email" name="email" placeholder="Your Email *" required>
+                                </div>
                             </div>
-                        </div>
-                        <div class="contact-item">
-                            <i class="fas fa-phone-alt"></i>
-                            <div>
-                                <p>+1 (234) 567-8901</p>
+                            
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="subject" name="subject" placeholder="Subject">
                             </div>
-                        </div>
-                        <div class="contact-item">
-                            <i class="fas fa-envelope"></i>
-                            <div>
-                                <p>info@commercelab.com</p>
+                            
+                            <div class="form-group">
+                                <textarea class="form-control" id="message" name="message" rows="4" placeholder="Your Message *" required></textarea>
                             </div>
-                        </div>
-                        
-                        <div class="meeting-scheduler">
-                            <h4>Prefer a scheduled call?</h4>
-                            <p>Book a 15-minute consultation with one of our training advisors.</p>
-                            <a href="#" class="cta-button schedule-btn">Schedule Now</a>
-                        </div>
+                            
+                            <div class="g-recaptcha" data-sitekey="YOUR_RECAPTCHA_SITE_KEY"></div>
+                            
+                            <button type="submit" class="submit-btn">
+                                <span class="submit-text">Send Message</span>
+                                <span class="submit-icon"><i class="fas fa-paper-plane"></i></span>
+                            </button>
+                        </form>
                     </div>
                 </div>
                 
-                <div class="col-lg-7" data-aos="fade-up" data-aos-delay="200">
-                    <div class="contact-form">
-                        <h3>Send Us a Message</h3>
-                        <form action="php/contact_process.php" method="post">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="name">Your Name</label>
-                                        <input type="text" class="form-control" id="name" name="name" required>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="email">Your Email</label>
-                                        <input type="email" class="form-control" id="email" name="email" required>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <div class="form-group">
-                                <label for="subject">Subject</label>
-                                <input type="text" class="form-control" id="subject" name="subject">
-                            </div>
-                            
-                            <div class="form-group">
-                                <label for="message">Your Message</label>
-                                <textarea class="form-control" id="message" name="message" rows="5" required></textarea>
-                            </div>
-                            
-                            <div class="g-recaptcha" data-sitekey="your-recaptcha-site-key"></div>
-                            
-                            <button type="submit" class="submit-btn">Send Message</button>
-                        </form>
+                <div class="contact-card cal-card">
+                    <h3>Schedule a Meeting</h3>
+                    <p>Book a consultation with one of our training advisors.</p>
+                    <div class="cal-embed">
+                        <!-- Cal.com inline embed code -->
+                        <cal-inline-widget src="https://cal.com/commercelab/consultation" style="min-width:320px;height:550px;"></cal-inline-widget>
                     </div>
                 </div>
             </div>
         </div>
+        
+        <div class="contact-shape contact-shape-1"></div>
+        <div class="contact-shape contact-shape-2"></div>
     </section>
     
     <!-- Footer -->

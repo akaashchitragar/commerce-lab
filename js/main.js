@@ -29,6 +29,12 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Initialize features tabs
     initFeaturesTabs();
+    
+    // Initialize mobile responsive features
+    initMobileResponsive();
+    
+    // Initialize count-up animation for stat numbers
+    initCountUpAnimation();
 });
 
 /**
@@ -216,65 +222,125 @@ function initSmoothScrolling() {
  * Initialize contact form submission behavior
  */
 function initContactForm() {
-    const contactForm = document.querySelector('.contact-form form');
+    const contactForm = document.querySelector('#contactForm');
     
     if (contactForm) {
         contactForm.addEventListener('submit', function(e) {
             e.preventDefault();
             
             const submitBtn = contactForm.querySelector('.submit-btn');
-            const originalBtnText = submitBtn.textContent;
+            const originalBtnText = submitBtn.querySelector('.submit-text').textContent;
+            const formContainer = contactForm.closest('.contact-form');
             
             // Show loading state
-            submitBtn.textContent = 'Sending...';
+            submitBtn.querySelector('.submit-text').textContent = 'Sending...';
             submitBtn.disabled = true;
+            
+            // Remove any existing error or success messages
+            const existingMessages = formContainer.querySelectorAll('.alert');
+            existingMessages.forEach(message => message.remove());
             
             // Get form data
             const formData = new FormData(contactForm);
             
-            // Simulate form submission
-            setTimeout(() => {
-                // Show success message
-                const formContainer = contactForm.closest('.contact-form');
-                const responseMessage = document.createElement('div');
-                responseMessage.className = 'alert alert-success mt-4 fade-in active';
-                responseMessage.innerHTML = '<strong>Thank you!</strong> Your message has been sent successfully. We\'ll get back to you soon.';
-                formContainer.appendChild(responseMessage);
-                
-                // Reset form
-                contactForm.reset();
-                
-                // Restore button
-                submitBtn.textContent = originalBtnText;
-                submitBtn.disabled = false;
-                
-                // Scroll to the message
-                responseMessage.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-                
-                // Remove message after delay
-                setTimeout(() => {
-                    responseMessage.style.opacity = '0';
-                    setTimeout(() => {
-                        responseMessage.remove();
-                    }, 500);
-                }, 5000);
-            }, 1500);
-            
-            // In a real implementation, you would use fetch() to submit the form:
-            /*
+            // Submit the form using fetch API
             fetch(contactForm.getAttribute('action'), {
                 method: 'POST',
                 body: formData
             })
             .then(response => response.json())
             .then(data => {
-                // Handle response
+                // Create response message
+                const responseMessage = document.createElement('div');
+                responseMessage.className = data.success 
+                    ? 'alert alert-success mt-4 fade-in active' 
+                    : 'alert alert-danger mt-4 fade-in active';
+                
+                if (data.success) {
+                    responseMessage.innerHTML = `<i class="fas fa-check-circle"></i> ${data.message}`;
+                    // Reset form on success
+                    contactForm.reset();
+                } else {
+                    responseMessage.innerHTML = `<i class="fas fa-exclamation-circle"></i> ${data.message}`;
+                    
+                    // Add error details if available
+                    if (data.errors && data.errors.length > 0) {
+                        const errorList = document.createElement('ul');
+                        errorList.className = 'error-list';
+                        
+                        data.errors.forEach(error => {
+                            const errorItem = document.createElement('li');
+                            errorItem.textContent = error;
+                            errorList.appendChild(errorItem);
+                        });
+                        
+                        responseMessage.appendChild(errorList);
+                    }
+                }
+                
+                // Add message to the form
+                formContainer.appendChild(responseMessage);
+                
+                // Restore button
+                submitBtn.querySelector('.submit-text').textContent = originalBtnText;
+                submitBtn.disabled = false;
+                
+                // Scroll to the message
+                responseMessage.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                
+                // Remove success message after delay (errors stay for user to read)
+                if (data.success) {
+                    setTimeout(() => {
+                        responseMessage.style.opacity = '0';
+                        setTimeout(() => {
+                            responseMessage.remove();
+                        }, 500);
+                    }, 5000);
+                }
             })
             .catch(error => {
-                // Handle error
+                console.error('Error:', error);
+                
+                // Create error message
+                const errorMessage = document.createElement('div');
+                errorMessage.className = 'alert alert-danger mt-4 fade-in active';
+                errorMessage.innerHTML = '<i class="fas fa-exclamation-triangle"></i> A network error occurred. Please try again.';
+                
+                // Add message to the form
+                formContainer.appendChild(errorMessage);
+                
+                // Restore button
+                submitBtn.querySelector('.submit-text').textContent = originalBtnText;
+                submitBtn.disabled = false;
             });
-            */
         });
+    }
+    
+    // Initialize Cal.com embed
+    initCalComWidget();
+}
+
+/**
+ * Initialize Cal.com widget integration
+ */
+function initCalComWidget() {
+    // Load Cal.com script if not already loaded
+    if (!document.querySelector('script[src*="cal.com/embed.js"]')) {
+        const calScript = document.createElement('script');
+        calScript.src = 'https://cal.com/embed.js';
+        calScript.async = true;
+        document.head.appendChild(calScript);
+        
+        // Make sure the widget renders properly after load
+        calScript.onload = function() {
+            // Add a small timeout to ensure Cal components are registered
+            setTimeout(() => {
+                // Force a refresh of the components if needed
+                if (window.Cal && typeof window.Cal.Cal === 'function') {
+                    window.Cal.Cal('init');
+                }
+            }, 500);
+        };
     }
 }
 
@@ -409,6 +475,198 @@ function initFeaturesTabs() {
             button.classList.add('active');
             document.getElementById(tabId).classList.add('active');
         });
+    });
+}
+
+/**
+ * Initialize mobile responsive features
+ */
+function initMobileResponsive() {
+    // Mobile menu toggle functionality
+    const navbarToggler = document.querySelector('.navbar-toggler');
+    const navbarCollapse = document.querySelector('.navbar-collapse');
+    
+    if (navbarToggler && navbarCollapse) {
+        navbarToggler.addEventListener('click', function() {
+            if (navbarCollapse.classList.contains('show')) {
+                navbarCollapse.classList.remove('show');
+                // Add overlay fade-out animation and remove it
+                const overlay = document.querySelector('.mobile-menu-overlay');
+                if (overlay) {
+                    overlay.classList.remove('active');
+                    setTimeout(() => {
+                        overlay.remove();
+                    }, 300);
+                }
+                document.body.classList.remove('menu-open');
+            } else {
+                navbarCollapse.classList.add('show');
+                // Create overlay for mobile menu background
+                if (!document.querySelector('.mobile-menu-overlay')) {
+                    const overlay = document.createElement('div');
+                    overlay.className = 'mobile-menu-overlay';
+                    document.body.appendChild(overlay);
+                    setTimeout(() => {
+                        overlay.classList.add('active');
+                    }, 10);
+                    
+                    // Close menu when clicking outside
+                    overlay.addEventListener('click', function() {
+                        navbarCollapse.classList.remove('show');
+                        overlay.classList.remove('active');
+                        setTimeout(() => {
+                            overlay.remove();
+                        }, 300);
+                        document.body.classList.remove('menu-open');
+                    });
+                }
+                document.body.classList.add('menu-open');
+            }
+        });
+    }
+    
+    // Close mobile menu when window is resized to desktop size
+    window.addEventListener('resize', function() {
+        if (window.innerWidth >= 992 && navbarCollapse && navbarCollapse.classList.contains('show')) {
+            navbarCollapse.classList.remove('show');
+            const overlay = document.querySelector('.mobile-menu-overlay');
+            if (overlay) {
+                overlay.classList.remove('active');
+                setTimeout(() => {
+                    overlay.remove();
+                }, 300);
+            }
+            document.body.classList.remove('menu-open');
+        }
+    });
+    
+    // Convert hover effects to touch events on mobile
+    if ('ontouchstart' in window || navigator.msMaxTouchPoints) {
+        const cards = document.querySelectorAll('.service-card, .feature-card, .testimonial-card');
+        
+        cards.forEach(card => {
+            card.addEventListener('touchstart', function() {
+                this.classList.add('touch-focus');
+            }, {passive: true});
+            
+            card.addEventListener('touchend', function() {
+                setTimeout(() => {
+                    this.classList.remove('touch-focus');
+                }, 300);
+            }, {passive: true});
+        });
+    }
+    
+    // Fix for 100vh issue on mobile browsers
+    function setMobileViewportHeight() {
+        const vh = window.innerHeight * 0.01;
+        document.documentElement.style.setProperty('--vh', `${vh}px`);
+    }
+    
+    setMobileViewportHeight();
+    window.addEventListener('resize', setMobileViewportHeight);
+    
+    // Enable horizontal scroll for tabs on mobile with touch
+    const tabNavs = document.querySelectorAll('.features-tab-nav');
+    tabNavs.forEach(nav => {
+        let isDown = false;
+        let startX;
+        let scrollLeft;
+        
+        nav.addEventListener('mousedown', (e) => {
+            if (window.innerWidth < 992) {
+                isDown = true;
+                startX = e.pageX - nav.offsetLeft;
+                scrollLeft = nav.scrollLeft;
+            }
+        });
+        
+        nav.addEventListener('mouseleave', () => {
+            isDown = false;
+        });
+        
+        nav.addEventListener('mouseup', () => {
+            isDown = false;
+        });
+        
+        nav.addEventListener('mousemove', (e) => {
+            if (!isDown) return;
+            e.preventDefault();
+            const x = e.pageX - nav.offsetLeft;
+            const walk = (x - startX) * 2;
+            nav.scrollLeft = scrollLeft - walk;
+        });
+        
+        // For touch devices
+        nav.addEventListener('touchstart', (e) => {
+            if (window.innerWidth < 992) {
+                startX = e.touches[0].pageX - nav.offsetLeft;
+                scrollLeft = nav.scrollLeft;
+            }
+        }, {passive: true});
+        
+        nav.addEventListener('touchmove', (e) => {
+            if (window.innerWidth < 992) {
+                const x = e.touches[0].pageX - nav.offsetLeft;
+                const walk = (x - startX) * 2;
+                nav.scrollLeft = scrollLeft - walk;
+            }
+        }, {passive: true});
+    });
+}
+
+/**
+ * Initialize count-up animation for stat numbers
+ */
+function initCountUpAnimation() {
+    const statNumbers = document.querySelectorAll('.stat-number[data-count]');
+    
+    if (!statNumbers.length) return;
+    
+    const options = {
+        threshold: 0.5,
+        rootMargin: '0px'
+    };
+    
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const targetElement = entry.target;
+                const targetNumber = parseInt(targetElement.getAttribute('data-count'));
+                const suffix = targetElement.querySelector('span')?.textContent || '';
+                const duration = 2000; // animation duration in milliseconds
+                let startTime;
+                let currentNumber = 0;
+                
+                function updateNumber(timestamp) {
+                    if (!startTime) startTime = timestamp;
+                    const progress = Math.min((timestamp - startTime) / duration, 1);
+                    
+                    // Use easeOutExpo for smooth slowing at the end
+                    const easeOutExpo = progress === 1 ? 1 : 1 - Math.pow(2, -10 * progress);
+                    currentNumber = Math.floor(easeOutExpo * targetNumber);
+                    
+                    // Update the text content, preserving the suffix
+                    targetElement.textContent = currentNumber;
+                    if (suffix) {
+                        const spanElement = document.createElement('span');
+                        spanElement.textContent = suffix;
+                        targetElement.appendChild(spanElement);
+                    }
+                    
+                    if (progress < 1) {
+                        requestAnimationFrame(updateNumber);
+                    }
+                }
+                
+                requestAnimationFrame(updateNumber);
+                observer.unobserve(targetElement);
+            }
+        });
+    }, options);
+    
+    statNumbers.forEach(statNumber => {
+        observer.observe(statNumber);
     });
 }
 

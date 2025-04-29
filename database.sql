@@ -14,7 +14,11 @@ CREATE TABLE IF NOT EXISTS contact_submissions (
     phone VARCHAR(50),
     subject VARCHAR(255) NOT NULL,
     message TEXT NOT NULL,
+    status ENUM('pending', 'sent', 'failed', 'replied') DEFAULT 'pending',
+    ip_address VARCHAR(45),
+    user_agent TEXT,
     created_at DATETIME NOT NULL,
+    updated_at DATETIME,
     is_read BOOLEAN DEFAULT 0,
     notes TEXT
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
