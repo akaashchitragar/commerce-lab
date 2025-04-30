@@ -54,8 +54,8 @@
     - Interactive Whiteboards: Enhance learning through interactive teaching and group work.
     - Video Conferencing Systems: Connect with industry experts, attend virtual guest lectures, and collaborate remotely.
   - **Security Features:**
-    - Data Security: Robust measures including firewalls and data encryption protect sensitive information.
-    - Access Control: Secure login systems ensure data privacy.
+    - Data Security: Robust measures including firewalls, antivirus software, and data encryption protect sensitive information.
+    - Access Control: Secure login systems and user permissions ensure data privacy.
     - Ergonomic Design: Comfortable, ergonomically designed furniture supports an effective learning environment.
   - **Networking and Professional Development:**
     - Industry Partnerships: Benefit from collaborations providing internships, live projects, and guest lectures.
@@ -64,13 +64,14 @@
 ## ERP Modules Section
 - **Headline:** Comprehensive Business Systems Training
 - **Body:** Our curriculum includes essential business software modules, with special emphasis on ERP systems that utilize a single database approach for integrated learning:
+  - **Single Database Approach:** Our ideal ERP system utilizes a single database that contains all data for various software modules, ensuring seamless integration across business functions.
   - **Manufacturing:** Engineering, capacity planning, workflow management, quality control, Bills of Material (BOM), manufacturing processes.
   - **Financials:** Accounts Payable, Accounts Receivable, Fixed Assets, General Ledger, Cash Management.
   - **Human Resources:** Benefits administration, training management, payroll processing, time and attendance tracking.
   - **Supply Chain Management:** Inventory control, supply chain planning, supplier scheduling, order entry, purchasing, claim processing.
   - **Projects:** Project costing, billing, activity management, time and expense tracking.
   - **Customer Relationship Management (CRM):** Sales and marketing automation, service management, commission tracking, customer contact management, call center support.
-  - **Data Warehouse:** Learn how data warehousing supports customers, suppliers, and employees.
+  - **Data Warehouse:** Learn how data warehousing supports customers, suppliers, and employees across the organization.
 
 ## Training and Support Section
 - **Headline:** Dedicated Training and Support
@@ -85,6 +86,7 @@
   - **Software Suite:** Includes Microsoft Office, Power BI, SAP, Salesforce, and Bloomberg Terminal access.
   - **Interactive Tools:** Features 2 interactive whiteboards and 1 video conferencing system.
   - **Specialized Business Tools:** Point of Sale systems, inventory management software, and market simulation tools.
+  - **Hands-On Learning Environment:** All systems are designed for practical application and real-world simulations.
 
 ## Contact Section
 - **Headline:** Connect with Commerce Lab

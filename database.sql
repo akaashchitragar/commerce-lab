@@ -11,16 +11,14 @@ CREATE TABLE IF NOT EXISTS contact_submissions (
     id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
     email VARCHAR(255) NOT NULL,
-    phone VARCHAR(50),
     subject VARCHAR(255) NOT NULL,
     message TEXT NOT NULL,
-    status ENUM('pending', 'sent', 'failed', 'replied') DEFAULT 'pending',
+    status ENUM('pending', 'sent', 'read') DEFAULT 'pending',
     ip_address VARCHAR(45),
-    user_agent TEXT,
     created_at DATETIME NOT NULL,
-    updated_at DATETIME,
-    is_read BOOLEAN DEFAULT 0,
-    notes TEXT
+    INDEX idx_email (email),
+    INDEX idx_created_at (created_at),
+    INDEX idx_status (status)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Newsletter subscribers table

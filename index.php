@@ -86,7 +86,7 @@ $metaDescription = "Commerce Lab offers hands-on learning experiences in ERP sys
     }
     </script>
     
-    <!-- Google tag (gtag.js) - GA4 -->
+    <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-GVEN6YSYRN"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -114,11 +114,12 @@ $metaDescription = "Commerce Lab offers hands-on learning experiences in ERP sys
     
     <!-- Hero Section -->
     <section id="hero" class="hero-section">
+        <div class="hero-bg-shape"></div>
         <div class="container hero-container">
             <div class="row align-items-center">
                 <div class="col-lg-6" data-aos="fade-up" data-aos-duration="800">
                     <div class="hero-content">
-                        <div class="hero-badge">Established in 2009</div>
+                        <div class="hero-badge">A Unit of Nakshatra Technologies</div>
                         <h1 class="hero-headline">Experience <span class="hero-highlight">Real Business</span> Before Your First Job</h1>
                         <p class="hero-text">Step into our dynamic learning space where you'll solve real business challenges using industry tools. Gain the hands-on experience employers are actively looking for in commerce, finance, and business graduates.</p>
                         <div class="hero-buttons">
@@ -129,15 +130,15 @@ $metaDescription = "Commerce Lab offers hands-on learning experiences in ERP sys
                         <div class="hero-stats">
                             <div class="hero-stat-item">
                                 <div class="hero-stat-number">14+</div>
-                                <div class="hero-stat-label">Years<br>Experience</div>
+                                <div class="hero-stat-label">Years</div>
                             </div>
                             <div class="hero-stat-item">
-                                <div class="hero-stat-number">5K+</div>
-                                <div class="hero-stat-label">Students<br>Trained</div>
+                                <div class="hero-stat-number">10K+</div>
+                                <div class="hero-stat-label">Students</div>
                             </div>
                             <div class="hero-stat-item">
                                 <div class="hero-stat-number">20+</div>
-                                <div class="hero-stat-label">ERP<br>Modules</div>
+                                <div class="hero-stat-label">ERP Modules</div>
                             </div>
                         </div>
                     </div>
@@ -207,9 +208,9 @@ $metaDescription = "Commerce Lab offers hands-on learning experiences in ERP sys
     <section id="services" class="services-section">
         <div class="container">
             <div class="section-header text-center" data-aos="fade-up">
-                <div class="section-badge">Core Subsystems</div>
-                <h2>Master Integrated Business Processes</h2>
-                <p>Gain practical skills across all core business functions</p>
+                <div class="section-badge">Enterprise Resource Planning</div>
+                <h2>Master Integrated Business Processes with Hands-On Training</h2>
+                <p>Gain practical expertise across the essential functions of an enterprise through our comprehensive ERP systems</p>
             </div>
             <div class="card-grid" data-aos="fade-up" data-aos-delay="100">
                 <div class="service-card" data-service="sales">
@@ -217,56 +218,77 @@ $metaDescription = "Commerce Lab offers hands-on learning experiences in ERP sys
                         <i class="fas fa-chart-line"></i>
                     </div>
                     <h3>Sales & Marketing</h3>
-                    <p>Learn how to attract and retain customers through hands-on campaign management</p>
+                    <p>Understand customer interaction and sales processes through hands-on experience</p>
                 </div>
                 <div class="service-card" data-service="scheduling">
                     <div class="service-icon">
                         <i class="fas fa-calendar-alt"></i>
                     </div>
                     <h3>Master Scheduling</h3>
-                    <p>Create effective production plans and allocate resources efficiently</p>
+                    <p>Learn to plan and manage production schedules with precision</p>
                 </div>
                 <div class="service-card" data-service="material">
                     <div class="service-icon">
                         <i class="fas fa-boxes"></i>
                     </div>
                     <h3>Material Planning</h3>
-                    <p>Calculate exactly what materials you need, when you need them</p>
+                    <p>Master inventory control and material procurement processes</p>
                 </div>
                 <div class="service-card" data-service="capacity">
                     <div class="service-icon">
                         <i class="fas fa-cogs"></i>
                     </div>
                     <h3>Capacity Planning</h3>
-                    <p>Balance workloads and optimize production capabilities</p>
+                    <p>Align production capacity with demand through strategic planning</p>
                 </div>
                 <div class="service-card" data-service="bom">
                     <div class="service-icon">
                         <i class="fas fa-clipboard-list"></i>
                     </div>
                     <h3>Bill of Materials</h3>
-                    <p>Understand product structures and manage component relationships</p>
+                    <p>Understand product structures and component relationships</p>
                 </div>
                 <div class="service-card" data-service="purchasing">
                     <div class="service-icon">
                         <i class="fas fa-shopping-cart"></i>
                     </div>
                     <h3>Purchasing</h3>
-                    <p>Manage vendor relationships and optimize procurement processes</p>
+                    <p>Get hands-on experience with procurement processes</p>
                 </div>
                 <div class="service-card" data-service="shopfloor">
                     <div class="service-icon">
                         <i class="fas fa-industry"></i>
                     </div>
                     <h3>Shop Floor Control</h3>
-                    <p>Monitor and manage manufacturing activities in real-time</p>
+                    <p>Learn to manage and monitor manufacturing activities</p>
                 </div>
                 <div class="service-card" data-service="accounting">
                     <div class="service-icon">
                         <i class="fas fa-file-invoice-dollar"></i>
                     </div>
                     <h3>Financial Accounting</h3>
-                    <p>Master core accounting principles with hands-on practice</p>
+                    <p>Gain practical skills in core accounting principles</p>
+                </div>
+                <div class="service-card" data-service="logistics">
+                    <div class="service-icon">
+                        <i class="fas fa-truck"></i>
+                    </div>
+                    <h3>Logistics</h3>
+                    <p>Understand the flow of goods and supply chain coordination</p>
+                </div>
+                <div class="service-card" data-service="assets">
+                    <div class="service-icon">
+                        <i class="fas fa-building"></i>
+                    </div>
+                    <h3>Asset Management</h3>
+                    <p>Learn to track and manage company assets effectively</p>
+                </div>
+                <div class="service-card" data-service="crm">
+                    <div class="service-icon">
+                        <i class="fas fa-user-friends"></i>
+                    </div>
+                    <h3>CRM</h3>
+                    <p>Manage customer interactions across the entire customer lifecycle</p>
                 </div>
             </div>
             
@@ -444,6 +466,69 @@ $metaDescription = "Commerce Lab offers hands-on learning experiences in ERP sys
                 </div>
             </div>
         </div>
+        
+        <div class="service-popup" id="popup-logistics">
+            <div class="popup-content">
+                <div class="popup-header">
+                    <h3><i class="fas fa-truck"></i> Logistics</h3>
+                    <button class="popup-close"><i class="fas fa-times"></i></button>
+                </div>
+                <div class="popup-body">
+                    <p>Master the flow of goods and supply chain coordination:</p>
+                    <ul>
+                        <li>Transportation management</li>
+                        <li>Distribution planning</li>
+                        <li>Warehouse operations and layout</li>
+                        <li>Inventory tracking systems</li>
+                        <li>Shipping documentation</li>
+                        <li>Supply chain visibility and analytics</li>
+                    </ul>
+                    <p>Learn to optimize the movement of goods through the supply chain, from procurement to delivery, ensuring timely and cost-effective fulfillment of customer orders.</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="service-popup" id="popup-assets">
+            <div class="popup-content">
+                <div class="popup-header">
+                    <h3><i class="fas fa-building"></i> Asset Management</h3>
+                    <button class="popup-close"><i class="fas fa-times"></i></button>
+                </div>
+                <div class="popup-body">
+                    <p>Learn to track and manage company assets effectively:</p>
+                    <ul>
+                        <li>Fixed asset registration and tracking</li>
+                        <li>Depreciation calculation methods</li>
+                        <li>Asset maintenance scheduling</li>
+                        <li>Equipment lifecycle management</li>
+                        <li>Capital expenditure planning</li>
+                        <li>Asset performance analytics</li>
+                    </ul>
+                    <p>Understand how businesses track, maintain, and optimize the value of their physical assets while ensuring compliance with accounting standards and regulatory requirements.</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="service-popup" id="popup-crm">
+            <div class="popup-content">
+                <div class="popup-header">
+                    <h3><i class="fas fa-user-friends"></i> Customer Relationship Management</h3>
+                    <button class="popup-close"><i class="fas fa-times"></i></button>
+                </div>
+                <div class="popup-body">
+                    <p>Manage customer interactions across the entire customer lifecycle:</p>
+                    <ul>
+                        <li>Contact and lead management</li>
+                        <li>Sales automation and tracking</li>
+                        <li>Customer service and support</li>
+                        <li>Marketing campaign management</li>
+                        <li>Customer data analysis</li>
+                        <li>Loyalty program administration</li>
+                    </ul>
+                    <p>Gain hands-on experience with CRM software to manage customer relationships effectively, driving customer retention and growth through personalized engagement strategies.</p>
+                </div>
+            </div>
+        </div>
     </div>
     
     <!-- Lab Features Section -->
@@ -451,8 +536,8 @@ $metaDescription = "Commerce Lab offers hands-on learning experiences in ERP sys
         <div class="container">
             <div class="section-header text-center" data-aos="fade-up">
                 <div class="section-badge">Our Lab</div>
-                <h2>Experience Our State-of-the-Art Environment</h2>
-                <p>Everything you need to succeed in one immersive space</p>
+                <h2>Explore Our State-of-the-Art Commerce Lab Facility</h2>
+                <p>Our lab is equipped with the tools and technology you need to succeed</p>
             </div>
             
             <div class="features-tabs" data-aos="fade-up" data-aos-delay="100">
@@ -460,7 +545,8 @@ $metaDescription = "Commerce Lab offers hands-on learning experiences in ERP sys
                     <button class="tab-btn active" data-tab="equipment"><i class="fas fa-desktop"></i> Workstations</button>
                     <button class="tab-btn" data-tab="software"><i class="fas fa-laptop-code"></i> Software</button>
                     <button class="tab-btn" data-tab="collaboration"><i class="fas fa-users"></i> Collaboration</button>
-                    <button class="tab-btn" data-tab="industry"><i class="fas fa-handshake"></i> Industry</button>
+                    <button class="tab-btn" data-tab="security"><i class="fas fa-shield-alt"></i> Security</button>
+                    <button class="tab-btn" data-tab="industry"><i class="fas fa-handshake"></i> Networking</button>
                 </div>
                 
                 <div class="features-tab-content">
@@ -474,13 +560,13 @@ $metaDescription = "Commerce Lab offers hands-on learning experiences in ERP sys
                             </div>
                             <div class="col-lg-6">
                                 <div class="feature-content" data-aos="fade-left">
-                                    <h3>High-Performance Workstations</h3>
-                                    <p>Train on dual-monitor computers powerful enough to handle real business applications and simulations. Our networked environment enables seamless collaboration and mirrors professional workplace setups.</p>
+                                    <h3>Workstations and Computer Systems</h3>
+                                    <p>Our lab features high-performance computing resources that prepare you for professional workplace environments through realistic simulations.</p>
                                     <ul class="feature-list">
-                                        <li><i class="fas fa-check-circle"></i> Dual high-resolution monitors</li>
-                                        <li><i class="fas fa-check-circle"></i> Powerful processors for business applications</li>
-                                        <li><i class="fas fa-check-circle"></i> Networked environment for realistic workflow</li>
-                                        <li><i class="fas fa-check-circle"></i> Ergonomic workspaces designed for productivity</li>
+                                        <li><i class="fas fa-check-circle"></i> High-Performance Computers: Utilize machines equipped to handle demanding business software and simulations</li>
+                                        <li><i class="fas fa-check-circle"></i> Networked Environment: Facilitates resource sharing and collaborative projects</li>
+                                        <li><i class="fas fa-check-circle"></i> Dual high-resolution monitors for enhanced productivity</li>
+                                        <li><i class="fas fa-check-circle"></i> Ergonomic workspaces designed for comfort and efficiency</li>
                                     </ul>
                                 </div>
                             </div>
@@ -497,13 +583,17 @@ $metaDescription = "Commerce Lab offers hands-on learning experiences in ERP sys
                             </div>
                             <div class="col-lg-6 order-lg-1">
                                 <div class="feature-content" data-aos="fade-right">
-                                    <h3>Industry-Standard Software</h3>
-                                    <p>Get hands-on with the same tools businesses actually use. Master these platforms before you even start your first job, gaining practical skills that employers value immediately.</p>
+                                    <h3>Software and Applications</h3>
+                                    <p>Master the same software tools that businesses rely on daily, giving you practical experience that employers value immediately.</p>
                                     <ul class="feature-list">
-                                        <li><i class="fas fa-check-circle"></i> ERP Systems (SAP, Tally, Oracle)</li>
-                                        <li><i class="fas fa-check-circle"></i> Data Analysis (Excel, Power BI)</li>
-                                        <li><i class="fas fa-check-circle"></i> Accounting Software (TallyPrime)</li>
-                                        <li><i class="fas fa-check-circle"></i> CRM Systems (Salesforce)</li>
+                                        <li><i class="fas fa-check-circle"></i> Accounting Software: Gain hands-on practice with TallyPrime for accounting and inventory management</li>
+                                        <li><i class="fas fa-check-circle"></i> ERP Systems: Learn integrated business processes using industry-standard software like SAP, Tally, or Oracle</li>
+                                        <li><i class="fas fa-check-circle"></i> Reporting & Analysis Tools: Master data analysis with Power BI and Excel</li>
+                                        <li><i class="fas fa-check-circle"></i> CRM Software: Manage customer interactions using systems like Salesforce</li>
+                                        <li><i class="fas fa-check-circle"></i> Market Simulation Tools: Practice buying and selling in realistic stock trading simulators</li>
+                                        <li><i class="fas fa-check-circle"></i> Point of Sale (POS) Systems: Get experience with retail transactions and sales management</li>
+                                        <li><i class="fas fa-check-circle"></i> GST Simulators: Understand Goods and Services Tax processes</li>
+                                        <li><i class="fas fa-check-circle"></i> Inventory Management Systems: Learn supply chain and inventory control principles</li>
                                     </ul>
                                 </div>
                             </div>
@@ -520,11 +610,11 @@ $metaDescription = "Commerce Lab offers hands-on learning experiences in ERP sys
                             </div>
                             <div class="col-lg-6">
                                 <div class="feature-content" data-aos="fade-left">
-                                    <h3>Interactive Learning Tools</h3>
-                                    <p>Our cutting-edge collaboration tools foster teamwork and facilitate learning from industry experts. Develop the communication skills essential for today's collaborative business environment.</p>
+                                    <h3>Collaboration Tools</h3>
+                                    <p>Our cutting-edge collaboration tools foster teamwork and facilitate learning from industry experts, developing the communication skills essential for today's business environment.</p>
                                     <ul class="feature-list">
-                                        <li><i class="fas fa-check-circle"></i> Interactive whiteboards for group projects</li>
-                                        <li><i class="fas fa-check-circle"></i> Video conferencing with industry experts</li>
+                                        <li><i class="fas fa-check-circle"></i> Interactive Whiteboards: Enhance learning through interactive teaching and group work</li>
+                                        <li><i class="fas fa-check-circle"></i> Video Conferencing Systems: Connect with industry experts, attend virtual guest lectures, and collaborate remotely</li>
                                         <li><i class="fas fa-check-circle"></i> Collaborative problem-solving spaces</li>
                                         <li><i class="fas fa-check-circle"></i> Digital presentation equipment</li>
                                     </ul>
@@ -533,22 +623,44 @@ $metaDescription = "Commerce Lab offers hands-on learning experiences in ERP sys
                         </div>
                     </div>
                     
-                    <div class="tab-pane" id="industry">
+                    <div class="tab-pane" id="security">
                         <div class="row align-items-center">
                             <div class="col-lg-6 order-lg-2">
                                 <div class="feature-image-container" data-aos="fade-left">
-                                    <img src="images/industry.jpg" alt="Industry Connections" class="img-fluid feature-image">
+                                    <img src="images/security.jpg" alt="Security Features" class="img-fluid feature-image">
                                     <div class="feature-shape feature-shape-2"></div>
                                 </div>
                             </div>
                             <div class="col-lg-6 order-lg-1">
                                 <div class="feature-content" data-aos="fade-right">
-                                    <h3>Industry Connections</h3>
-                                    <p>Benefit from our extensive network of business partnerships that provide real-world opportunities. Make valuable connections that can jumpstart your career even before graduation.</p>
+                                    <h3>Security Features</h3>
+                                    <p>Our lab implements comprehensive security measures to protect sensitive information and provide a secure learning environment.</p>
                                     <ul class="feature-list">
+                                        <li><i class="fas fa-check-circle"></i> Data Security: Robust measures including firewalls, antivirus software, and data encryption protect sensitive information</li>
+                                        <li><i class="fas fa-check-circle"></i> Access Control: Secure login systems and user permissions ensure data privacy</li>
+                                        <li><i class="fas fa-check-circle"></i> Ergonomic Design: Comfortable, ergonomically designed furniture supports an effective learning environment</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="tab-pane" id="industry">
+                        <div class="row align-items-center">
+                            <div class="col-lg-6">
+                                <div class="feature-image-container" data-aos="fade-right">
+                                    <img src="images/industry.jpg" alt="Industry Connections" class="img-fluid feature-image">
+                                    <div class="feature-shape feature-shape-1"></div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="feature-content" data-aos="fade-left">
+                                    <h3>Networking and Professional Development</h3>
+                                    <p>Benefit from our extensive network of business partnerships that provide real-world opportunities and connections to jumpstart your career.</p>
+                                    <ul class="feature-list">
+                                        <li><i class="fas fa-check-circle"></i> Industry Partnerships: Benefit from collaborations providing internships, live projects, and guest lectures</li>
+                                        <li><i class="fas fa-check-circle"></i> Networking Events: Connect with industry professionals to build your professional network</li>
                                         <li><i class="fas fa-check-circle"></i> Guest lectures from industry leaders</li>
-                                        <li><i class="fas fa-check-circle"></i> Internship opportunities with partner companies</li>
-                                        <li><i class="fas fa-check-circle"></i> Networking events with professionals</li>
                                         <li><i class="fas fa-check-circle"></i> Real-world case studies and projects</li>
                                     </ul>
                                 </div>
@@ -744,137 +856,215 @@ $metaDescription = "Commerce Lab offers hands-on learning experiences in ERP sys
         <div class="container">
             <div class="section-header text-center" data-aos="fade-up">
                 <div class="section-badge">Contact Us</div>
-                <h2>Get In Touch</h2>
-                <p>Have questions about our business simulation lab? We're here to help.</p>
+                <h2>Connect With Commerce Lab</h2>
+                <p>Ready to enhance your practical business skills? Reach out to learn more or schedule a visit.</p>
             </div>
             
-            <div class="contact-container" data-aos="fade-up" data-aos-delay="100">
-                <div class="contact-card contact-info">
-                    <div class="contact-item">
-                        <i class="fas fa-map-marker-alt"></i>
-                        <div>
-                            <p>#3, Pooja Arcade, Deshpande Nagar, Hubli<br>Opp. Sawai Gandharwa Hall</p>
-                        </div>
-                    </div>
-                    <div class="contact-item">
-                        <i class="fas fa-phone-alt"></i>
-                        <div>
-                            <p>0836-2257865, 0836-2370786, 9448110341</p>
-                        </div>
-                    </div>
-                    <div class="contact-item">
-                        <i class="fas fa-envelope"></i>
-                        <div>
-                            <p>info@commercelab.in</p>
-                        </div>
-                    </div>
-                    
-                    <div class="contact-divider"></div>
-                    
-                    <div class="contact-form">
-                        <?php if (isset($_GET['contact']) && $_GET['contact'] == 'success'): ?>
-                            <div class="alert alert-success">
-                                Thank you for your message! We'll get back to you as soon as possible.
-                            </div>
-                        <?php elseif (isset($_GET['contact']) && $_GET['contact'] == 'error'): ?>
-                            <div class="alert alert-danger">
-                                <?php echo isset($_GET['message']) ? htmlspecialchars($_GET['message']) : 'Sorry, there was a problem sending your message. Please try again later.'; ?>
-                            </div>
-                        <?php endif; ?>
-                        <form action="php/send-contact.php" method="post" id="contactForm">
-                            <div class="form-row">
-                                <div class="form-group">
-                                    <input type="text" class="form-control" id="name" name="name" placeholder="Your Name *" required>
-                                </div>
-                                <div class="form-group">
-                                    <input type="email" class="form-control" id="email" name="email" placeholder="Your Email *" required>
-                                </div>
-                            </div>
-                            
-                            <div class="form-group">
-                                <input type="text" class="form-control" id="subject" name="subject" placeholder="Subject">
-                            </div>
-                            
-                            <div class="form-group">
-                                <textarea class="form-control" id="message" name="message" rows="4" placeholder="Your Message *" required></textarea>
-                            </div>
-                            
-                            <button type="submit" class="submit-btn">
-                                <span class="submit-text">Send Message</span>
-                                <span class="submit-icon"><i class="fas fa-paper-plane"></i></span>
-                            </button>
-                        </form>
-                    </div>
+            <div class="contact-main-wrapper" data-aos="fade-up" data-aos-delay="100">
+                <div class="contact-tabs">
+                    <button class="contact-tab-btn active" data-contact-tab="form">
+                        <i class="fas fa-envelope"></i> Contact Form
+                    </button>
+                    <button class="contact-tab-btn" data-contact-tab="schedule">
+                        <i class="fas fa-calendar-alt"></i> Schedule Meeting
+                    </button>
+                    <button class="contact-tab-btn" data-contact-tab="map">
+                        <i class="fas fa-map-marker-alt"></i> Find Us
+                    </button>
                 </div>
                 
-                <div class="contact-card cal-card">
-                    <h3>Schedule a Meeting</h3>
-                    <p>Book a consultation with one of our training advisors.</p>
-                    <div class="cal-embed" style="height: 600px; overflow-y: auto;">
-                        <!-- Cal.com inline embed code -->
-                        <div id="cal-booking-placeholder" style="min-height: 550px;"></div>
-                        <script>
-                        (function (C, A, L) {
-                            let p = function (a, ar) {
-                                a.q.push(ar);
-                            };
-                            let d = C.document;
-                            C.Cal = C.Cal || function () {
-                                let cal = C.Cal;
-                                let ar = arguments;
-                                if (!cal.loaded) {
-                                    cal.ns = {};
-                                    cal.q = cal.q || [];
-                                    d.head.appendChild(d.createElement("script")).src = A;
-                                    cal.loaded = true;
-                                }
-                                if (ar[0] === L) {
-                                    const api = function () {
-                                        p(api, arguments);
+                <div class="contact-content-wrapper">
+                    <div class="contact-tab-content active" id="contact-form">
+                        <div class="row">
+                            <div class="col-lg-5">
+                                <div class="contact-info-card">
+                                    <div class="contact-info-header">
+                                        <h3>Contact Information</h3>
+                                        <p>Have questions or need help? We're here for you.</p>
+                                    </div>
+                                    
+                                    <div class="contact-info-body">
+                                        <div class="contact-info-item">
+                                            <div class="contact-icon">
+                                                <i class="fas fa-map-marker-alt"></i>
+                                            </div>
+                                            <div class="contact-text">
+                                                <h4>Location</h4>
+                                                <p>#3, Pooja Arcade, Deshpande Nagar, Hubli<br>Opp. Sawai Gandharwa Hall</p>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="contact-info-item">
+                                            <div class="contact-icon">
+                                                <i class="fas fa-phone-alt"></i>
+                                            </div>
+                                            <div class="contact-text">
+                                                <h4>Phone</h4>
+                                                <p>0836-2257865<br>0836-2370786<br>9448110341</p>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="contact-info-item">
+                                            <div class="contact-icon">
+                                                <i class="fas fa-envelope"></i>
+                                            </div>
+                                            <div class="contact-text">
+                                                <h4>Email</h4>
+                                                <p>info@commercelab.in</p>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="contact-info-item">
+                                            <div class="contact-icon">
+                                                <i class="fas fa-clock"></i>
+                                            </div>
+                                            <div class="contact-text">
+                                                <h4>Business Hours</h4>
+                                                <p>Monday - Friday: 9:00 AM - 6:00 PM<br>
+                                                Saturday: 9:00 AM - 1:00 PM<br>
+                                                Sunday: Closed</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="col-lg-7">
+                                <div class="contact-form-card">
+                                    <h3>Send Us a Message</h3>
+                                    <p>Fill out the form below and we'll get back to you as soon as possible.</p>
+                                    
+                                    <?php if (isset($_GET['contact']) && $_GET['contact'] == 'success'): ?>
+                                        <div class="alert alert-success">
+                                            Thank you for your message! We'll get back to you as soon as possible.
+                                        </div>
+                                    <?php elseif (isset($_GET['contact']) && $_GET['contact'] == 'error'): ?>
+                                        <div class="alert alert-danger">
+                                            <?php echo isset($_GET['message']) ? htmlspecialchars($_GET['message']) : 'Sorry, there was a problem sending your message. Please try again later.'; ?>
+                                        </div>
+                                    <?php endif; ?>
+                                    
+                                    <form action="php/send-contact.php" method="post" id="contactForm">
+                                        <div class="form-row">
+                                            <div class="form-group">
+                                                <label for="name">Your Name</label>
+                                                <input type="text" class="form-control" id="name" name="name" placeholder="Enter your name" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="email">Your Email</label>
+                                                <input type="email" class="form-control" id="email" name="email" placeholder="Enter your email" required>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="form-group">
+                                            <label for="subject">Subject</label>
+                                            <input type="text" class="form-control" id="subject" name="subject" placeholder="What is this regarding?">
+                                        </div>
+                                        
+                                        <div class="form-group">
+                                            <label for="message">Message</label>
+                                            <textarea class="form-control" id="message" name="message" rows="5" placeholder="How can we help you?" required></textarea>
+                                        </div>
+                                        
+                                        <button type="submit" class="submit-btn">
+                                            <span class="submit-text">Send Message</span>
+                                            <span class="submit-icon"><i class="fas fa-paper-plane"></i></span>
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-tab-content" id="contact-schedule">
+                        <div class="schedule-wrapper">
+                            <div class="schedule-intro">
+                                <h3>Schedule a Meeting</h3>
+                                <p>Book a consultation with one of our training advisors to learn more about our programs and facilities.</p>
+                            </div>
+                            <div class="cal-embed">
+                                <!-- Cal.com inline embed code -->
+                                <div id="cal-booking-placeholder" style="min-height: 600px;"></div>
+                                <script>
+                                (function (C, A, L) {
+                                    let p = function (a, ar) {
+                                        a.q.push(ar);
                                     };
-                                    const namespace = ar[1];
-                                    api.q = api.q || [];
-                                    typeof namespace === "string" ? (cal.ns[namespace] = api) && p(api, ar) : p(cal, ar);
-                                    return;
-                                }
-                                p(cal, ar);
-                            };
-                        })(window, "https://cal.com/embed.js", "init");
-                        Cal("init", {origin:"https://cal.com"});
-                        
-                        Cal("inline", {
-                            elementOrSelector: "#cal-booking-placeholder",
-                            calLink: "commerce-lab/30min",
-                            layout: "column",
-                            hideLogo: true,
-                            hideEventTypeDetails: false,
-                            hideGdprBanner: true,
-                            config: {
-                                theme: "light",
-                                hideEventTypeDetails: false,
-                                disableBranding: true,
-                                ui: {
-                                    bookerSectionComponent: {
-                                        disableAvatar: true,
-                                    },
-                                    cssVarsPerTheme: {
-                                        light: {
-                                            '--cal-brand': '#FF5722',
-                                            '--cal-brand-emphasis': '#E64A19',
-                                            '--cal-brand-text': 'white',
+                                    let d = C.document;
+                                    C.Cal = C.Cal || function () {
+                                        let cal = C.Cal;
+                                        let ar = arguments;
+                                        if (!cal.loaded) {
+                                            cal.ns = {};
+                                            cal.q = cal.q || [];
+                                            d.head.appendChild(d.createElement("script")).src = A;
+                                            cal.loaded = true;
                                         }
-                                    }
-                                }
-                            },
-                        });
-                        </script>
+                                        if (ar[0] === L) {
+                                            const api = function () {
+                                                p(api, arguments);
+                                            };
+                                            const namespace = ar[1];
+                                            api.q = api.q || [];
+                                            typeof namespace === "string" ? (cal.ns[namespace] = api) && p(api, ar) : p(cal, ar);
+                                            return;
+                                        }
+                                        p(cal, ar);
+                                    };
+                                })(window, "https://cal.com/embed.js", "init");
+                                Cal("init", {origin:"https://cal.com"});
+                                
+                                Cal("inline", {
+                                    elementOrSelector: "#cal-booking-placeholder",
+                                    calLink: "commerce-lab/30min",
+                                    layout: "column",
+                                    hideLogo: true,
+                                    hideEventTypeDetails: false,
+                                    hideGdprBanner: true,
+                                    config: {
+                                        theme: "light",
+                                        hideEventTypeDetails: false,
+                                        disableBranding: true,
+                                        ui: {
+                                            bookerSectionComponent: {
+                                                disableAvatar: true,
+                                            },
+                                            cssVarsPerTheme: {
+                                                light: {
+                                                    '--cal-brand': '#336699',
+                                                    '--cal-brand-emphasis': '#235689',
+                                                    '--cal-brand-text': 'white',
+                                                }
+                                            }
+                                        }
+                                    },
+                                });
+                                </script>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-tab-content" id="contact-map">
+                        <div class="map-wrapper">
+                            <div class="map-intro">
+                                <h3>Visit Our Location</h3>
+                                <p>Find us at the following location. We'd be delighted to show you around our facilities.</p>
+                            </div>
+                            <div class="map-container">
+                                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3847.3318883577863!2d75.13607450679451!3d15.35850173983422!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bb8d7443ff6a175%3A0xb24338fc6b11c3c9!2sGCOMM%20LAB%20INC%20SAP%20TRAINING!5e0!3m2!1sen!2sin!4v1746027210866!5m2!1sen!2sin" width="100%" height="500" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                                <div class="map-card">
+                                    <h4>Commerce Lab</h4>
+                                    <p><i class="fas fa-map-marker-alt"></i> #3, Pooja Arcade, Deshpande Nagar, Hubli</p>
+                                    <a href="https://maps.app.goo.gl/CZ4tVDkr7jppgr69A" target="_blank" class="map-directions-btn">
+                                        <i class="fas fa-directions"></i> Get Directions
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-        
-        <div class="contact-shape contact-shape-1"></div>
-        <div class="contact-shape contact-shape-2"></div>
     </section>
     
     <!-- Footer -->

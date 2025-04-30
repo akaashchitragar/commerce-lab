@@ -1,8 +1,11 @@
 <?php
-// Simple contact form handler without database dependency
+// Simple contact form handler that can work with or without a database
 
 // Set email destination
 $to_email = 'info@commercelab.in';
+
+// Set headers for all responses
+header('Content-Type: application/json');
 
 // Check if form was submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -27,7 +30,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $errors[] = "Message is required";
     }
     
-    // If no errors, send email
+    // If no errors, send email and optionally save to database
     if (empty($errors)) {
         // Current date and time
         $created_at = date('Y-m-d H:i:s');
@@ -45,32 +48,85 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         ";
         
         // Headers
-        $headers = "From: $email" . "\r\n";
-        $headers .= "Reply-To: $email" . "\r\n";
-        $headers .= "X-Mailer: PHP/" . phpversion();
+        $mail_headers = "From: $email" . "\r\n";
+        $mail_headers .= "Reply-To: $email" . "\r\n";
+        $mail_headers .= "X-Mailer: PHP/" . phpversion();
         
         // Attempt to send email
-        $mail_success = mail($to_email, $email_subject, $email_body, $headers);
+        $mail_success = mail($to_email, $email_subject, $email_body, $mail_headers);
         
-        // Respond with success or error
+        // Try to save to database if possible
+        $db_success = false;
+        
+        try {
+            // Database configuration 
+            $db_config = [
+                'host' => 'localhost',
+                'name' => 'dcwacvni_commerce_lab',
+                'user' => 'dcwacvni',
+                'pass' => '!T~(aJ9gsDlX'
+            ];
+            
+            // Create a new PDO instance
+            $pdo = new PDO(
+                "mysql:host={$db_config['host']};dbname={$db_config['name']};charset=utf8mb4",
+                $db_config['user'],
+                $db_config['pass'],
+                [
+                    PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+                    PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+                    PDO::ATTR_EMULATE_PREPARES => false
+                ]
+            );
+            
+            // Insert into contact_submissions table
+            $stmt = $pdo->prepare("
+                INSERT INTO contact_submissions 
+                (name, email, subject, message, status, ip_address, created_at) 
+                VALUES (?, ?, ?, ?, 'pending', ?, ?)
+            ");
+            
+            $ip_address = $_SERVER['REMOTE_ADDR'] ?? '';
+            
+            $db_success = $stmt->execute([
+                $name,
+                $email,
+                $subject,
+                $message,
+                $ip_address,
+                $created_at
+            ]);
+        } catch (Exception $e) {
+            // If database connection fails, log the error but don't inform the user
+            error_log("Database error: " . $e->getMessage());
+            // We'll still return success if the email was sent
+        }
+        
+        // Return JSON response
         if ($mail_success) {
-            // Redirect back to the main page with success query parameter
-            header('Location: /?contact=success#contact');
-            exit;
+            echo json_encode([
+                'success' => true,
+                'message' => 'Thank you for your message. We will get back to you soon!'
+            ]);
         } else {
-            // Redirect back with error
-            header('Location: /?contact=error#contact');
-            exit;
+            echo json_encode([
+                'success' => false,
+                'message' => 'There was a problem sending your message. Please try again later.'
+            ]);
         }
     } else {
-        // Redirect back with validation errors
-        $error_string = implode(',', $errors);
-        header("Location: /?contact=error&message=" . urlencode($error_string) . "#contact");
-        exit;
+        // Return validation errors as JSON
+        echo json_encode([
+            'success' => false,
+            'message' => 'Please correct the following errors: ' . implode(', ', $errors),
+            'errors' => $errors
+        ]);
     }
 } else {
-    // Not a POST request
-    header('HTTP/1.1 405 Method Not Allowed');
-    header('Allow: POST');
-    echo "Method not allowed";
+    // Not a POST request - return error as JSON
+    http_response_code(405);
+    echo json_encode([
+        'success' => false,
+        'message' => 'Method not allowed'
+    ]);
 } 

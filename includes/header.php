@@ -28,7 +28,7 @@
                     <li class="nav-item">
                         <a class="nav-link" href="#services">
                             <i class="fas fa-cubes d-lg-none"></i>
-                            Modules
+                            Core Subsystems
                         </a>
                     </li>
                     <li class="nav-item">

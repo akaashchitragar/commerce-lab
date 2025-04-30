@@ -24,6 +24,9 @@ document.addEventListener('DOMContentLoaded', function() {
     // Initialize contact form
     initContactForm();
     
+    // Initialize contact tabs
+    initContactTabs();
+    
     // Initialize Cal.com widget if present
     if (document.querySelector('.cal-embed')) {
         initCalComWidget();
@@ -60,6 +63,16 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 /**
+ * Updates the viewport height for mobile browsers
+ */
+function updateViewportHeight() {
+    // This function uses setMobileViewportHeight to fix the 100vh issue on mobile
+    if (typeof setMobileViewportHeight === 'function') {
+        setMobileViewportHeight();
+    }
+}
+
+/**
  * Initialize preloader functionality
  */
 function initPreloader() {
@@ -79,9 +92,15 @@ function initPreloader() {
         const elapsedTime = currentTime - startTime;
         const remainingTime = Math.max(0, minimumLoadingTime - elapsedTime);
         
+        // Prepare hero elements for animation as soon as the page loads
+        prepareHeroAnimation();
+        
         // Ensure preloader is displayed for at least the minimum time
         setTimeout(function() {
             preloader.classList.add('hide');
+            
+            // Trigger animation when the preloader starts fading out
+            animateHeroSection();
             
             // Re-enable scrolling after preloader is hidden
             setTimeout(function() {
@@ -98,7 +117,13 @@ function initPreloader() {
     // Fallback: Hide preloader after a maximum time (5 seconds) in case load event doesn't trigger
     setTimeout(function() {
         if (preloader && !preloader.classList.contains('hide')) {
+            // Prepare hero elements
+            prepareHeroAnimation();
+            
             preloader.classList.add('hide');
+            
+            // Trigger animation when the preloader starts fading out
+            animateHeroSection();
             
             // Re-enable scrolling
             setTimeout(function() {
@@ -110,6 +135,119 @@ function initPreloader() {
             }, 600);
         }
     }, 5000);
+}
+
+/**
+ * Prepare hero section elements for animation
+ */
+function prepareHeroAnimation() {
+    const heroElements = {
+        badge: document.querySelector('.hero-badge'),
+        headline: document.querySelector('.hero-headline'),
+        text: document.querySelector('.hero-text'),
+        buttons: document.querySelector('.hero-buttons'),
+        stats: document.querySelector('.hero-stats'),
+        image: document.querySelector('.hero-image-container')
+    };
+    
+    // Reset any AOS animations that might have fired prematurely
+    if (typeof AOS !== 'undefined') {
+        AOS.refreshHard();
+    }
+    
+    // Set initial state for animation elements
+    if (heroElements.badge) {
+        heroElements.badge.style.opacity = '0';
+        heroElements.badge.style.transform = 'translateY(20px)';
+    }
+    
+    if (heroElements.headline) {
+        heroElements.headline.style.opacity = '0';
+        heroElements.headline.style.transform = 'translateY(30px)';
+    }
+    
+    if (heroElements.text) {
+        heroElements.text.style.opacity = '0';
+        heroElements.text.style.transform = 'translateY(30px)';
+    }
+    
+    if (heroElements.buttons) {
+        heroElements.buttons.style.opacity = '0';
+        heroElements.buttons.style.transform = 'translateY(30px)';
+    }
+    
+    if (heroElements.stats) {
+        heroElements.stats.style.opacity = '0';
+        heroElements.stats.style.transform = 'translateY(30px)';
+    }
+    
+    if (heroElements.image) {
+        heroElements.image.style.opacity = '0';
+        heroElements.image.style.transform = 'translateY(40px)';
+    }
+}
+
+/**
+ * Animate hero section elements after preloader
+ */
+function animateHeroSection() {
+    const heroElements = {
+        badge: document.querySelector('.hero-badge'),
+        headline: document.querySelector('.hero-headline'),
+        text: document.querySelector('.hero-text'),
+        buttons: document.querySelector('.hero-buttons'),
+        stats: document.querySelector('.hero-stats'),
+        image: document.querySelector('.hero-image-container')
+    };
+    
+    // Apply sequential animations with increasing delays
+    if (heroElements.badge) {
+        setTimeout(() => {
+            heroElements.badge.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+            heroElements.badge.style.opacity = '1';
+            heroElements.badge.style.transform = 'translateY(0)';
+        }, 100);
+    }
+    
+    if (heroElements.headline) {
+        setTimeout(() => {
+            heroElements.headline.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+            heroElements.headline.style.opacity = '1';
+            heroElements.headline.style.transform = 'translateY(0)';
+        }, 300);
+    }
+    
+    if (heroElements.text) {
+        setTimeout(() => {
+            heroElements.text.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+            heroElements.text.style.opacity = '1';
+            heroElements.text.style.transform = 'translateY(0)';
+        }, 500);
+    }
+    
+    if (heroElements.buttons) {
+        setTimeout(() => {
+            heroElements.buttons.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+            heroElements.buttons.style.opacity = '1';
+            heroElements.buttons.style.transform = 'translateY(0)';
+        }, 700);
+    }
+    
+    if (heroElements.stats) {
+        setTimeout(() => {
+            heroElements.stats.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+            heroElements.stats.style.opacity = '1';
+            heroElements.stats.style.transform = 'translateY(0)';
+        }, 900);
+    }
+    
+    if (heroElements.image) {
+        setTimeout(() => {
+            heroElements.image.style.transition = 'opacity 1s ease, transform 1s ease';
+            heroElements.image.style.opacity = '1';
+            heroElements.image.style.transform = 'translateY(0)';
+        }, 400);
+    }
 }
 
 /**
@@ -319,114 +457,90 @@ function initSmoothScrolling() {
 }
 
 /**
- * Initialize contact form submission behavior
+ * Initialize contact form behavior
  */
 function initContactForm() {
-    const contactForm = document.querySelector('#contactForm');
+    const contactForm = document.getElementById('contactForm');
     
-    if (contactForm) {
-        contactForm.addEventListener('submit', function(e) {
-            e.preventDefault();
+    if (!contactForm) return;
+    
+    contactForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const formData = new FormData(contactForm);
+        const submitBtn = contactForm.querySelector('button[type="submit"]');
+        const originalBtnText = submitBtn.querySelector('.submit-text').textContent;
+        const formContainer = contactForm.parentNode;
+        
+        // Clear any existing messages
+        const existingMessages = formContainer.querySelectorAll('.alert');
+        existingMessages.forEach(msg => msg.remove());
+        
+        // Show loading state
+        submitBtn.disabled = true;
+        submitBtn.querySelector('.submit-text').textContent = 'Sending...';
+        
+        // Submit form via AJAX
+        fetch(contactForm.getAttribute('action'), {
+            method: 'POST',
+            body: formData,
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+            // Create response message
+            const messageClass = data.success ? 'alert-success' : 'alert-danger';
+            const icon = data.success ? 'fa-check-circle' : 'fa-exclamation-triangle';
             
-            const submitBtn = contactForm.querySelector('.submit-btn');
-            const originalBtnText = submitBtn.querySelector('.submit-text').textContent;
-            const formContainer = contactForm.closest('.contact-form');
+            const responseMessage = document.createElement('div');
+            responseMessage.className = `alert ${messageClass} mt-4 fade-in active`;
+            responseMessage.innerHTML = `<i class="fas ${icon}"></i> ${data.message}`;
             
-            // Show loading state
-            submitBtn.querySelector('.submit-text').textContent = 'Sending...';
-            submitBtn.disabled = true;
+            // Add message to the form
+            formContainer.appendChild(responseMessage);
             
-            // Remove any existing error or success messages
-            const existingMessages = formContainer.querySelectorAll('.alert');
-            existingMessages.forEach(message => message.remove());
+            // Restore button
+            submitBtn.querySelector('.submit-text').textContent = originalBtnText;
+            submitBtn.disabled = false;
             
-            // Get form data
-            const formData = new FormData(contactForm);
+            // Reset form if success
+            if (data.success) {
+                contactForm.reset();
+            }
             
-            // Submit the form using fetch API
-            fetch(contactForm.getAttribute('action'), {
-                method: 'POST',
-                body: formData
-            })
-            .then(response => response.json())
-            .then(data => {
-                // Create response message
-                const responseMessage = document.createElement('div');
-                responseMessage.className = data.success 
-                    ? 'alert alert-success mt-4 fade-in active' 
-                    : 'alert alert-danger mt-4 fade-in active';
-                
-                if (data.success) {
-                    responseMessage.innerHTML = `<i class="fas fa-check-circle"></i> ${data.message}`;
-                    // Reset form on success
-                    contactForm.reset();
-                    
-                    // Track form submission success event in GA4
-                    if (typeof gtag === 'function') {
-                        gtag('event', 'form_submission', {
-                            'event_category': 'Contact',
-                            'event_label': 'Contact Form',
-                            'value': 1
-                        });
-                    }
-                } else {
-                    responseMessage.innerHTML = `<i class="fas fa-exclamation-circle"></i> ${data.message}`;
-                    
-                    // Add error details if available
-                    if (data.errors && data.errors.length > 0) {
-                        const errorList = document.createElement('ul');
-                        errorList.className = 'error-list';
-                        
-                        data.errors.forEach(error => {
-                            const errorItem = document.createElement('li');
-                            errorItem.textContent = error;
-                            errorList.appendChild(errorItem);
-                        });
-                        
-                        responseMessage.appendChild(errorList);
-                    }
-                }
-                
-                // Add message to the form
-                formContainer.appendChild(responseMessage);
-                
-                // Restore button
-                submitBtn.querySelector('.submit-text').textContent = originalBtnText;
-                submitBtn.disabled = false;
-                
-                // Scroll to the message
-                responseMessage.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-                
-                // Remove success message after delay (errors stay for user to read)
-                if (data.success) {
+            // Scroll to the message
+            responseMessage.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            
+            // Remove success message after delay (errors stay for user to read)
+            if (data.success) {
+                setTimeout(() => {
+                    responseMessage.style.opacity = '0';
                     setTimeout(() => {
-                        responseMessage.style.opacity = '0';
-                        setTimeout(() => {
-                            responseMessage.remove();
-                        }, 500);
-                    }, 5000);
-                }
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                
-                // Create error message
-                const errorMessage = document.createElement('div');
-                errorMessage.className = 'alert alert-danger mt-4 fade-in active';
-                errorMessage.innerHTML = '<i class="fas fa-exclamation-triangle"></i> A network error occurred. Please try again.';
-                
-                // Add message to the form
-                formContainer.appendChild(errorMessage);
-                
-                // Restore button
-                submitBtn.querySelector('.submit-text').textContent = originalBtnText;
-                submitBtn.disabled = false;
-            });
+                        responseMessage.remove();
+                    }, 500);
+                }, 5000);
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            
+            // Create error message
+            const errorMessage = document.createElement('div');
+            errorMessage.className = 'alert alert-danger mt-4 fade-in active';
+            errorMessage.innerHTML = '<i class="fas fa-exclamation-triangle"></i> A network error occurred. Please try again.';
+            
+            // Add message to the form
+            formContainer.appendChild(errorMessage);
+            
+            // Restore button
+            submitBtn.querySelector('.submit-text').textContent = originalBtnText;
+            submitBtn.disabled = false;
         });
-    }
-    
-    // Initialize Cal.com embed
-    initCalComWidget();
+    });
 }
 
 /**
@@ -953,4 +1067,64 @@ function initBackToTopButton() {
     
     // Check initial scroll position
     toggleBackToTopButton();
+}
+
+/**
+ * Initialize contact tabs functionality
+ * Handles tab switching in the contact section
+ */
+function initContactTabs() {
+    const tabButtons = document.querySelectorAll('.contact-tab-btn');
+    const tabContents = document.querySelectorAll('.contact-tab-content');
+    
+    if (!tabButtons.length || !tabContents.length) return;
+    
+    // Set default active tab (first tab)
+    document.getElementById('contact-form').classList.add('active');
+    tabButtons[0].classList.add('active');
+    
+    // Add click event listeners to tab buttons
+    tabButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            // Get the target tab to show
+            const targetTab = this.getAttribute('data-contact-tab');
+            
+            // Remove active class from all buttons and tabs
+            tabButtons.forEach(btn => btn.classList.remove('active'));
+            tabContents.forEach(content => content.classList.remove('active'));
+            
+            // Add active class to current button and corresponding tab
+            this.classList.add('active');
+            document.getElementById('contact-' + targetTab).classList.add('active');
+            
+            // If Cal.com widget is in the activated tab, refresh it
+            if (targetTab === 'schedule' && typeof Cal !== 'undefined') {
+                try {
+                    Cal('ui', {theme: 'light'});
+                } catch (e) {
+                    console.log('Cal.com widget refresh failed:', e);
+                }
+            }
+        });
+    });
+    
+    // Check if there's a hash in the URL that matches a tab
+    const hash = window.location.hash.substring(1);
+    if (hash) {
+        const tabMatch = Array.from(tabButtons).find(btn => 
+            btn.getAttribute('data-contact-tab') === hash
+        );
+        
+        if (tabMatch) {
+            tabMatch.click();
+        }
+    }
+    
+    // Update URL hash when tabs change (for shareable links)
+    tabButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            const targetTab = this.getAttribute('data-contact-tab');
+            history.replaceState(null, null, '#' + targetTab);
+        });
+    });
 } 
