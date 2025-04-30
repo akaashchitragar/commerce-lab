@@ -56,9 +56,6 @@ $metaDescription = "Commerce Lab offers hands-on learning experiences in ERP sys
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="images/favicon.png">
     
-    <!-- Google reCAPTCHA -->
-    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
-    
     <!-- Google Schema.org JSON-LD -->
     <script type="application/ld+json">
     {
@@ -756,13 +753,13 @@ $metaDescription = "Commerce Lab offers hands-on learning experiences in ERP sys
                     <div class="contact-item">
                         <i class="fas fa-map-marker-alt"></i>
                         <div>
-                            <p>123 Business Avenue, Technology Park<br>Your City, ST 12345</p>
+                            <p>#3, Pooja Arcade, Deshpande Nagar, Hubli<br>Opp. Sawai Gandharwa Hall</p>
                         </div>
                     </div>
                     <div class="contact-item">
                         <i class="fas fa-phone-alt"></i>
                         <div>
-                            <p>+1 (234) 567-8901</p>
+                            <p>0836-2257865, 0836-2370786, 9448110341</p>
                         </div>
                     </div>
                     <div class="contact-item">
@@ -775,6 +772,15 @@ $metaDescription = "Commerce Lab offers hands-on learning experiences in ERP sys
                     <div class="contact-divider"></div>
                     
                     <div class="contact-form">
+                        <?php if (isset($_GET['contact']) && $_GET['contact'] == 'success'): ?>
+                            <div class="alert alert-success">
+                                Thank you for your message! We'll get back to you as soon as possible.
+                            </div>
+                        <?php elseif (isset($_GET['contact']) && $_GET['contact'] == 'error'): ?>
+                            <div class="alert alert-danger">
+                                <?php echo isset($_GET['message']) ? htmlspecialchars($_GET['message']) : 'Sorry, there was a problem sending your message. Please try again later.'; ?>
+                            </div>
+                        <?php endif; ?>
                         <form action="php/send-contact.php" method="post" id="contactForm">
                             <div class="form-row">
                                 <div class="form-group">
@@ -793,8 +799,6 @@ $metaDescription = "Commerce Lab offers hands-on learning experiences in ERP sys
                                 <textarea class="form-control" id="message" name="message" rows="4" placeholder="Your Message *" required></textarea>
                             </div>
                             
-                            <div class="g-recaptcha" data-sitekey="6LcKoCkrAAAAAN3Dsvc301-zz046ipFlEuHb_TVp"></div>
-                            
                             <button type="submit" class="submit-btn">
                                 <span class="submit-text">Send Message</span>
                                 <span class="submit-icon"><i class="fas fa-paper-plane"></i></span>
@@ -806,9 +810,64 @@ $metaDescription = "Commerce Lab offers hands-on learning experiences in ERP sys
                 <div class="contact-card cal-card">
                     <h3>Schedule a Meeting</h3>
                     <p>Book a consultation with one of our training advisors.</p>
-                    <div class="cal-embed">
+                    <div class="cal-embed" style="height: 600px; overflow-y: auto;">
                         <!-- Cal.com inline embed code -->
-                        <cal-inline-widget src="https://cal.com/commerce-lab/30min" style="min-width:320px;height:550px;"></cal-inline-widget>
+                        <div id="cal-booking-placeholder" style="min-height: 550px;"></div>
+                        <script>
+                        (function (C, A, L) {
+                            let p = function (a, ar) {
+                                a.q.push(ar);
+                            };
+                            let d = C.document;
+                            C.Cal = C.Cal || function () {
+                                let cal = C.Cal;
+                                let ar = arguments;
+                                if (!cal.loaded) {
+                                    cal.ns = {};
+                                    cal.q = cal.q || [];
+                                    d.head.appendChild(d.createElement("script")).src = A;
+                                    cal.loaded = true;
+                                }
+                                if (ar[0] === L) {
+                                    const api = function () {
+                                        p(api, arguments);
+                                    };
+                                    const namespace = ar[1];
+                                    api.q = api.q || [];
+                                    typeof namespace === "string" ? (cal.ns[namespace] = api) && p(api, ar) : p(cal, ar);
+                                    return;
+                                }
+                                p(cal, ar);
+                            };
+                        })(window, "https://cal.com/embed.js", "init");
+                        Cal("init", {origin:"https://cal.com"});
+                        
+                        Cal("inline", {
+                            elementOrSelector: "#cal-booking-placeholder",
+                            calLink: "commerce-lab/30min",
+                            layout: "column",
+                            hideLogo: true,
+                            hideEventTypeDetails: false,
+                            hideGdprBanner: true,
+                            config: {
+                                theme: "light",
+                                hideEventTypeDetails: false,
+                                disableBranding: true,
+                                ui: {
+                                    bookerSectionComponent: {
+                                        disableAvatar: true,
+                                    },
+                                    cssVarsPerTheme: {
+                                        light: {
+                                            '--cal-brand': '#FF5722',
+                                            '--cal-brand-emphasis': '#E64A19',
+                                            '--cal-brand-text': 'white',
+                                        }
+                                    }
+                                }
+                            },
+                        });
+                        </script>
                     </div>
                 </div>
             </div>
