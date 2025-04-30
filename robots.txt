@@ -3,6 +3,24 @@ Allow: /
 Disallow: /php/
 Disallow: /includes/
 Disallow: /admin/
+Disallow: /cgi-bin/
+Disallow: /tmp/
+Disallow: /assets/download/
+Disallow: /error_log
+Disallow: /*.sql$
+Disallow: /*.ini$
+Disallow: /*.log$
+Disallow: /*?replytocom=
+
+# Block specific bots that might cause issues
+User-agent: AhrefsBot
+Crawl-delay: 10
+
+User-agent: MJ12bot
+Crawl-delay: 10
+
+User-agent: SemrushBot
+Crawl-delay: 10
 
 # Sitemap location
 Sitemap: https://commercelab.in/sitemap.xml 

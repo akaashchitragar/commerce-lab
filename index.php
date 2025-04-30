@@ -8,8 +8,8 @@ $dbConfig = [
 ];
 
 // Page title and meta description for SEO
-$pageTitle = "Commerce Lab - Business Simulation & ERP Training";
-$metaDescription = "Commerce Lab offers hands-on learning experiences in ERP systems, business process simulation, and practical training since 2009. Book a session today!";
+$pageTitle = "Commerce Lab - Business Simulation & ERP Training Center India";
+$metaDescription = "Commerce Lab offers hands-on learning experiences in ERP systems, business process simulation, and practical training since 2009. India's premier business simulation lab for commerce graduates. Book a session today!";
 ?>
 
 <!DOCTYPE html>
@@ -20,18 +20,24 @@ $metaDescription = "Commerce Lab offers hands-on learning experiences in ERP sys
     <title><?php echo $pageTitle; ?></title>
     <meta name="description" content="<?php echo $metaDescription; ?>">
     
+    <!-- SEO Keywords -->
+    <meta name="keywords" content="ERP training, business simulation, commerce lab, practical business training, tally ERP, SAP training, business process simulation, finance practical training, commerce education, business education, India">
+    
     <!-- Open Graph Tags -->
     <meta property="og:title" content="<?php echo $pageTitle; ?>">
     <meta property="og:description" content="<?php echo $metaDescription; ?>">
     <meta property="og:image" content="https://commercelab.in/images/commerce-lab-og.jpg">
     <meta property="og:url" content="https://commercelab.in">
     <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Commerce Lab">
+    <meta property="og:locale" content="en_IN">
     
     <!-- Twitter Card Tags -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="<?php echo $pageTitle; ?>">
     <meta name="twitter:description" content="<?php echo $metaDescription; ?>">
     <meta name="twitter:image" content="https://commercelab.in/images/commerce-lab-og.jpg">
+    <meta name="twitter:site" content="@commercelab">
     
     <!-- Theme Color for Mobile Browsers -->
     <meta name="theme-color" content="#336699">
@@ -45,6 +51,7 @@ $metaDescription = "Commerce Lab offers hands-on learning experiences in ERP sys
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://cdn.jsdelivr.net">
     <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="preconnect" href="https://www.googletagmanager.com">
     
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;500;600;700;800&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -63,33 +70,100 @@ $metaDescription = "Commerce Lab offers hands-on learning experiences in ERP sys
     
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="images/favicon.png">
+    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
     
     <!-- Google Schema.org JSON-LD -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "Organization",
+      "@type": "EducationalOrganization",
       "name": "Commerce Lab",
       "url": "https://commercelab.in",
       "logo": "https://commercelab.in/images/logo.svg",
       "description": "Commerce Lab offers hands-on learning experiences in ERP systems and business process simulation.",
+      "foundingDate": "2009",
       "address": {
         "@type": "PostalAddress",
         "streetAddress": "Your Street Address",
         "addressLocality": "Your City",
         "addressRegion": "Your Region",
         "postalCode": "Your Postal Code",
-        "addressCountry": "Your Country"
+        "addressCountry": "IN"
       },
       "contactPoint": {
         "@type": "ContactPoint",
         "telephone": "+1-234-567-8901",
-        "contactType": "customer service"
+        "contactType": "customer service",
+        "availableLanguage": ["English", "Hindi"]
       },
       "sameAs": [
         "https://www.facebook.com/commercelab",
         "https://www.linkedin.com/company/commercelab",
-        "https://twitter.com/commercelab"
+        "https://twitter.com/commercelab",
+        "https://www.instagram.com/commercelab"
+      ],
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Training Programs",
+        "itemListElement": [
+          {
+            "@type": "Course",
+            "name": "ERP Systems Training",
+            "description": "Hands-on training on industry standard ERP systems",
+            "provider": {
+              "@type": "Organization",
+              "name": "Commerce Lab"
+            }
+          },
+          {
+            "@type": "Course",
+            "name": "Business Process Simulation",
+            "description": "Real-world business process simulation training",
+            "provider": {
+              "@type": "Organization",
+              "name": "Commerce Lab"
+            }
+          }
+        ]
+      },
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://commercelab.in"
+      }
+    }
+    </script>
+    
+    <!-- Local Business Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "Commerce Lab",
+      "image": "https://commercelab.in/images/commerce-lab-og.jpg",
+      "url": "https://commercelab.in",
+      "telephone": "+1-234-567-8901",
+      "priceRange": "₹₹",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Your Street Address",
+        "addressLocality": "Your City",
+        "addressRegion": "Your Region",
+        "postalCode": "Your Postal Code",
+        "addressCountry": "IN"
+      },
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+          "opens": "09:00",
+          "closes": "18:00"
+        },
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": "Saturday",
+          "opens": "10:00",
+          "closes": "15:00"
+        }
       ]
     }
     </script>
@@ -101,7 +175,19 @@ $metaDescription = "Commerce Lab offers hands-on learning experiences in ERP sys
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
     
-      gtag('config', 'G-GVEN6YSYRN');
+      gtag('config', 'G-GVEN6YSYRN', {
+        'send_page_view': true,
+        'page_title': '<?php echo $pageTitle; ?>',
+        'user_properties': {
+          'user_type': 'visitor'
+        }
+      });
+      
+      // Enhanced link attribution
+      gtag('set', {'link_attribution': true});
+      
+      // Enable enhanced e-commerce
+      gtag('set', {'allow_enhanced_conversions': true});
     </script>
 </head>
 <body>

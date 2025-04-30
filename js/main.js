@@ -507,90 +507,100 @@ function initSmoothScrolling() {
 }
 
 /**
- * Initialize contact form behavior
+ * Track a GA4 event
+ * @param {string} eventName - The name of the event
+ * @param {Object} eventParams - Event parameters
+ */
+function trackEvent(eventName, eventParams = {}) {
+    if (typeof gtag === 'function') {
+        gtag('event', eventName, eventParams);
+    }
+}
+
+/**
+ * Initialize contact form
  */
 function initContactForm() {
-    const contactForm = document.getElementById('contactForm');
+    const contactForm = document.getElementById('contact-form');
     
     if (!contactForm) return;
     
     contactForm.addEventListener('submit', function(e) {
         e.preventDefault();
         
+        // Get form data
         const formData = new FormData(contactForm);
-        const submitBtn = contactForm.querySelector('button[type="submit"]');
-        const originalBtnText = submitBtn.querySelector('.submit-text').textContent;
-        const formContainer = contactForm.parentNode;
+        const formObject = {};
         
-        // Clear any existing messages
-        const existingMessages = formContainer.querySelectorAll('.alert');
-        existingMessages.forEach(msg => msg.remove());
+        formData.forEach((value, key) => {
+            formObject[key] = value;
+        });
         
-        // Show loading state
-        submitBtn.disabled = true;
-        submitBtn.querySelector('.submit-text').textContent = 'Sending...';
+        // Track form submission in GA4
+        trackEvent('form_submit', {
+            'form_id': 'contact-form',
+            'form_name': 'Contact Form'
+        });
         
         // Submit form via AJAX
-        fetch(contactForm.getAttribute('action'), {
+        fetch('php/contact-process.php', {
             method: 'POST',
-            body: formData,
+            body: formData
         })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-            return response.json();
-        })
+        .then(response => response.json())
         .then(data => {
-            // Create response message
-            const messageClass = data.success ? 'alert-success' : 'alert-danger';
-            const icon = data.success ? 'fa-check-circle' : 'fa-exclamation-triangle';
-            
-            const responseMessage = document.createElement('div');
-            responseMessage.className = `alert ${messageClass} mt-4 fade-in active`;
-            responseMessage.innerHTML = `<i class="fas ${icon}"></i> ${data.message}`;
-            
-            // Add message to the form
-            formContainer.appendChild(responseMessage);
-            
-            // Restore button
-            submitBtn.querySelector('.submit-text').textContent = originalBtnText;
-            submitBtn.disabled = false;
-            
-            // Reset form if success
             if (data.success) {
+                // Show success message
+                showFormMessage('success', data.message || 'Thank you for your message! We will get back to you soon.');
+                
+                // Reset form
                 contactForm.reset();
-            }
-            
-            // Scroll to the message
-            responseMessage.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-            
-            // Remove success message after delay (errors stay for user to read)
-            if (data.success) {
-                setTimeout(() => {
-                    responseMessage.style.opacity = '0';
-                    setTimeout(() => {
-                        responseMessage.remove();
-                    }, 500);
-                }, 5000);
+                
+                // Track form submission success in GA4
+                trackEvent('form_submit_success', {
+                    'form_id': 'contact-form',
+                    'form_name': 'Contact Form'
+                });
+            } else {
+                // Show error message
+                showFormMessage('error', data.message || 'Something went wrong. Please try again later.');
+                
+                // Track form submission error in GA4
+                trackEvent('form_submit_error', {
+                    'form_id': 'contact-form',
+                    'form_name': 'Contact Form',
+                    'error_message': data.message || 'Unknown error'
+                });
             }
         })
         .catch(error => {
             console.error('Error:', error);
+            showFormMessage('error', 'Something went wrong. Please try again later.');
             
-            // Create error message
-            const errorMessage = document.createElement('div');
-            errorMessage.className = 'alert alert-danger mt-4 fade-in active';
-            errorMessage.innerHTML = '<i class="fas fa-exclamation-triangle"></i> A network error occurred. Please try again.';
-            
-            // Add message to the form
-            formContainer.appendChild(errorMessage);
-            
-            // Restore button
-            submitBtn.querySelector('.submit-text').textContent = originalBtnText;
-            submitBtn.disabled = false;
+            // Track form submission error in GA4
+            trackEvent('form_submit_error', {
+                'form_id': 'contact-form',
+                'form_name': 'Contact Form',
+                'error_message': 'Network error'
+            });
         });
     });
+    
+    function showFormMessage(type, message) {
+        const messageContainer = document.querySelector('.form-message');
+        
+        if (!messageContainer) return;
+        
+        // Set message style and content
+        messageContainer.className = 'form-message ' + type;
+        messageContainer.textContent = message;
+        messageContainer.style.display = 'block';
+        
+        // Hide message after 5 seconds
+        setTimeout(() => {
+            messageContainer.style.display = 'none';
+        }, 5000);
+    }
 }
 
 /**
@@ -612,16 +622,31 @@ function initCalComWidget() {
                 if (window.Cal && typeof window.Cal.Cal === 'function') {
                     window.Cal.Cal('init');
                     
+                    // Track calendar widget initialization in GA4
+                    trackEvent('calendar_widget_load', {
+                        'widget_type': 'cal.com',
+                        'content_type': 'booking_widget'
+                    });
+                    
+                    // Add event listener for booking started
+                    document.addEventListener('cal:booking-initiated', function() {
+                        trackEvent('booking_initiated', {
+                            'event_category': 'Scheduling',
+                            'event_label': 'Cal.com Booking Started',
+                            'content_type': 'booking'
+                        });
+                    });
+                    
                     // Add event listener for booking events
                     document.addEventListener('cal:booking-completed', function() {
                         // Track booking completed event in GA4
-                        if (typeof gtag === 'function') {
-                            gtag('event', 'booking_completed', {
-                                'event_category': 'Scheduling',
-                                'event_label': 'Cal.com Booking',
-                                'value': 1
-                            });
-                        }
+                        trackEvent('booking_completed', {
+                            'event_category': 'Scheduling',
+                            'event_label': 'Cal.com Booking',
+                            'content_type': 'booking',
+                            'conversion': true,
+                            'value': 1
+                        });
                     });
                 }
             }, 500);
@@ -667,6 +692,13 @@ function initServicePopups() {
             const targetPopup = document.getElementById(`popup-${serviceType}`);
             
             if (targetPopup) {
+                // Track service card view in GA4
+                trackEvent('service_view', {
+                    'service_name': serviceType,
+                    'service_id': card.getAttribute('data-id') || serviceType,
+                    'content_type': 'service'
+                });
+                
                 // First make container visible but transparent
                 popupContainer.style.display = 'flex';
                 
@@ -751,6 +783,13 @@ function initFeaturesTabs() {
     tabButtons.forEach(button => {
         button.addEventListener('click', () => {
             const tabId = button.getAttribute('data-tab');
+            
+            // Track tab click in GA4
+            trackEvent('tab_select', {
+                'tab_id': tabId,
+                'tab_name': button.textContent.trim(),
+                'content_type': 'tab'
+            });
             
             // Remove active class from all buttons and panes
             tabButtons.forEach(btn => btn.classList.remove('active'));
