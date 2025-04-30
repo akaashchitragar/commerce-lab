@@ -360,6 +360,15 @@ function initContactForm() {
                     responseMessage.innerHTML = `<i class="fas fa-check-circle"></i> ${data.message}`;
                     // Reset form on success
                     contactForm.reset();
+                    
+                    // Track form submission success event in GA4
+                    if (typeof gtag === 'function') {
+                        gtag('event', 'form_submission', {
+                            'event_category': 'Contact',
+                            'event_label': 'Contact Form',
+                            'value': 1
+                        });
+                    }
                 } else {
                     responseMessage.innerHTML = `<i class="fas fa-exclamation-circle"></i> ${data.message}`;
                     
@@ -438,6 +447,18 @@ function initCalComWidget() {
                 // Force a refresh of the components if needed
                 if (window.Cal && typeof window.Cal.Cal === 'function') {
                     window.Cal.Cal('init');
+                    
+                    // Add event listener for booking events
+                    document.addEventListener('cal:booking-completed', function() {
+                        // Track booking completed event in GA4
+                        if (typeof gtag === 'function') {
+                            gtag('event', 'booking_completed', {
+                                'event_category': 'Scheduling',
+                                'event_label': 'Cal.com Booking',
+                                'value': 1
+                            });
+                        }
+                    });
                 }
             }, 500);
         };

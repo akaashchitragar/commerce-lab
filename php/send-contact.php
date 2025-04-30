@@ -3,10 +3,10 @@
 require_once 'db-connect.php';
 
 // Set API keys and configuration
-$sendgrid_api_key = 'YOUR_SENDGRID_API_KEY'; // Replace with your actual SendGrid API key
-$to_email = 'info@commercelab.in';
-$from_email = 'noreply@commercelab.in';
-$recaptcha_secret = 'YOUR_RECAPTCHA_SECRET_KEY'; // Replace with your actual reCAPTCHA secret key
+$sendgrid_api_key = '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'; // SendGrid API key
+$to_email = 'info@commercelab.com';
+$from_email = 'noreply@commercelab.com';
+$recaptcha_secret = '6LcKoCkrAAAAAAGRfrMvZcNHpHTtJbNTOBS9v9tp'; // Google reCAPTCHA secret key
 
 // Check if form was submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {

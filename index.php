@@ -56,7 +56,10 @@ $metaDescription = "Commerce Lab offers hands-on learning experiences in ERP sys
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="images/favicon.png">
     
-    <!-- Structured Data -->
+    <!-- Google reCAPTCHA -->
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    
+    <!-- Google Schema.org JSON-LD -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -84,6 +87,16 @@ $metaDescription = "Commerce Lab offers hands-on learning experiences in ERP sys
         "https://twitter.com/commercelab"
       ]
     }
+    </script>
+    
+    <!-- Google tag (gtag.js) - GA4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-GVEN6YSYRN"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+    
+      gtag('config', 'G-GVEN6YSYRN');
     </script>
 </head>
 <body>
@@ -780,7 +793,7 @@ $metaDescription = "Commerce Lab offers hands-on learning experiences in ERP sys
                                 <textarea class="form-control" id="message" name="message" rows="4" placeholder="Your Message *" required></textarea>
                             </div>
                             
-                            <div class="g-recaptcha" data-sitekey="YOUR_RECAPTCHA_SITE_KEY"></div>
+                            <div class="g-recaptcha" data-sitekey="6LcKoCkrAAAAAN3Dsvc301-zz046ipFlEuHb_TVp"></div>
                             
                             <button type="submit" class="submit-btn">
                                 <span class="submit-text">Send Message</span>
@@ -795,7 +808,7 @@ $metaDescription = "Commerce Lab offers hands-on learning experiences in ERP sys
                     <p>Book a consultation with one of our training advisors.</p>
                     <div class="cal-embed">
                         <!-- Cal.com inline embed code -->
-                        <cal-inline-widget src="https://cal.com/commercelab/consultation" style="min-width:320px;height:550px;"></cal-inline-widget>
+                        <cal-inline-widget src="https://cal.com/commerce-lab/30min" style="min-width:320px;height:550px;"></cal-inline-widget>
                     </div>
                 </div>
             </div>
