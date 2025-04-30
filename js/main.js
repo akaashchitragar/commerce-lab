@@ -1,64 +1,73 @@
 /**
- * Commerce Lab Website Main JavaScript
+ * Commerce Lab Website Main JavaScript - Optimized Version
  */
 
+// Use DOMContentLoaded for initial loading
 document.addEventListener('DOMContentLoaded', function() {
     // Initialize preloader
     initPreloader();
     
-    // Initialize fade elements
-    initFadeElements();
+    // Defer non-critical initializations
+    setTimeout(() => {
+        // Initialize fade elements
+        initFadeElements();
+        
+        // Initialize sticky header
+        initStickyHeader();
+        
+        // Initialize active nav on scroll
+        initActiveNavOnScroll();
+        
+        // Initialize smooth scrolling
+        initSmoothScrolling();
+        
+        // Initialize contact form
+        initContactForm();
+        
+        // Initialize contact tabs
+        initContactTabs();
+        
+        // Initialize mobile responsive features
+        initMobileResponsive();
+        
+        // Initialize back-to-top button
+        initBackToTopButton();
+    }, 100);
     
-    // Initialize sticky header
-    initStickyHeader();
+    // Lazy initialize other features after page is fully loaded
+    window.addEventListener('load', function() {
+        // Initialize card hover effects
+        initCardHoverEffects();
+        
+        // Initialize Cal.com widget if present
+        if (document.querySelector('.cal-embed')) {
+            initCalComWidget();
+        }
+        
+        // Initialize image hover effects
+        initImageHoverEffects();
+        
+        // Initialize service popups
+        initServicePopups();
+        
+        // Initialize features tabs
+        initFeaturesTabs();
+        
+        // Initialize count-up animation for stat numbers
+        initCountUpAnimation();
+        
+        // Initialize mobile layouts
+        setupMobileLayouts();
+    });
     
-    // Initialize active nav on scroll
-    initActiveNavOnScroll();
-    
-    // Initialize card hover effects
-    initCardHoverEffects();
-    
-    // Initialize smooth scrolling
-    initSmoothScrolling();
-    
-    // Initialize contact form
-    initContactForm();
-    
-    // Initialize contact tabs
-    initContactTabs();
-    
-    // Initialize Cal.com widget if present
-    if (document.querySelector('.cal-embed')) {
-        initCalComWidget();
-    }
-    
-    // Initialize image hover effects
-    initImageHoverEffects();
-    
-    // Initialize service popups
-    initServicePopups();
-    
-    // Initialize features tabs
-    initFeaturesTabs();
-    
-    // Initialize mobile responsive features
-    initMobileResponsive();
-    
-    // Initialize count-up animation for stat numbers
-    initCountUpAnimation();
-    
-    // Initialize mobile hero layout
-    setupMobileHeroLayout();
-    
-    // Initialize mobile about layout
-    setupMobileAboutLayout();
-    
-    // Initialize back-to-top button
-    initBackToTopButton();
-    
-    // Setup resize event listener
+    // Optimize resize event with debounce
+    let resizeTimer;
     window.addEventListener('resize', function() {
-        updateViewportHeight();
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(function() {
+            updateViewportHeight();
+            checkMobileLayout();
+        }, 250);
     });
 });
 
@@ -66,9 +75,47 @@ document.addEventListener('DOMContentLoaded', function() {
  * Updates the viewport height for mobile browsers
  */
 function updateViewportHeight() {
-    // This function uses setMobileViewportHeight to fix the 100vh issue on mobile
-    if (typeof setMobileViewportHeight === 'function') {
-        setMobileViewportHeight();
+    // First we get the viewport height and multiply it by 1% to get a value for a vh unit
+    let vh = window.innerHeight * 0.01;
+    // Then we set the value in the --vh custom property to the root of the document
+    document.documentElement.style.setProperty('--vh', `${vh}px`);
+}
+
+/**
+ * Combine mobile layout functions for better performance
+ */
+function setupMobileLayouts() {
+    setupMobileHeroLayout();
+    setupMobileAboutLayout();
+    
+    // Initial check
+    checkMobileLayout();
+}
+
+/**
+ * Check for mobile layout adjustments
+ */
+function checkMobileLayout() {
+    const isMobile = window.innerWidth < 768;
+    const isPhablet = window.innerWidth < 576;
+    
+    // Add mobile-specific classes
+    document.body.classList.toggle('is-mobile', isMobile);
+    document.body.classList.toggle('is-small-mobile', isPhablet);
+    
+    // Apply specific mobile optimizations
+    if (isMobile) {
+        // Optimize parallax effects for mobile
+        const parallaxElements = document.querySelectorAll('.hero-shape, .about-shape, .feature-shape');
+        parallaxElements.forEach(el => {
+            el.style.transform = 'none';
+        });
+        
+        // Optimize hover effects for cards
+        const cards = document.querySelectorAll('.service-card, .testimonial-card');
+        cards.forEach(card => {
+            card.classList.add('mobile-optimized');
+        });
     }
 }
 
@@ -84,8 +131,11 @@ function initPreloader() {
     document.body.style.overflow = 'hidden';
     
     // Hide preloader after window loads with a minimum display time
-    const minimumLoadingTime = 2500; // Minimum time in milliseconds to show the preloader
+    const minimumLoadingTime = 1000; // Reduced from 2500ms for better performance
     const startTime = new Date().getTime();
+    
+    // Add initial viewport height calculation
+    updateViewportHeight();
     
     window.addEventListener('load', function() {
         const currentTime = new Date().getTime();
@@ -114,7 +164,7 @@ function initPreloader() {
         }, remainingTime);
     });
     
-    // Fallback: Hide preloader after a maximum time (5 seconds) in case load event doesn't trigger
+    // Fallback: Hide preloader after a maximum time (3 seconds) in case load event doesn't trigger
     setTimeout(function() {
         if (preloader && !preloader.classList.contains('hide')) {
             // Prepare hero elements
@@ -134,7 +184,7 @@ function initPreloader() {
                 }
             }, 600);
         }
-    }, 5000);
+    }, 3000); // Reduced from 5000ms
 }
 
 /**
@@ -717,175 +767,112 @@ function initFeaturesTabs() {
  * Initialize mobile responsive features
  */
 function initMobileResponsive() {
-    // Mobile menu toggle functionality
     const navbarToggler = document.querySelector('.navbar-toggler');
     const navbarCollapse = document.querySelector('.navbar-collapse');
-    const mobileMenuClose = document.querySelector('.mobile-menu-close');
+    const mobileMenuOverlay = document.querySelector('.mobile-menu-overlay');
+    const navLinks = document.querySelectorAll('.nav-link');
+    
+    // Create mobile menu overlay if it doesn't exist
+    if (!mobileMenuOverlay) {
+        const overlay = document.createElement('div');
+        overlay.classList.add('mobile-menu-overlay');
+        document.body.appendChild(overlay);
+    }
     
     if (navbarToggler && navbarCollapse) {
+        // Toggle navbar collapse when toggler is clicked
         navbarToggler.addEventListener('click', function() {
-            if (navbarCollapse.classList.contains('show')) {
-                navbarCollapse.classList.remove('show');
-                // Remove overlay if exists
-                removeOverlay();
-                document.body.classList.remove('menu-open');
-            } else {
-                navbarCollapse.classList.add('show');
-                // Create overlay for mobile menu background
-                if (!document.querySelector('.mobile-menu-overlay')) {
-                    const overlay = document.createElement('div');
-                    overlay.className = 'mobile-menu-overlay';
-                    document.body.appendChild(overlay);
-                    setTimeout(() => {
-                        overlay.classList.add('active');
-                    }, 10);
-                    
-                    // Close menu when clicking outside
-                    overlay.addEventListener('click', function(e) {
-                        e.stopPropagation();
-                        closeMenu();
-                    });
-                }
-                document.body.classList.add('menu-open');
+            navbarCollapse.classList.toggle('show');
+            
+            // Toggle overlay
+            const overlay = document.querySelector('.mobile-menu-overlay');
+            if (overlay) {
+                overlay.classList.toggle('active');
+            }
+            
+            // Toggle body class to prevent scrolling
+            document.body.classList.toggle('menu-open');
+            
+            // Add close button to mobile menu if it doesn't exist
+            if (navbarCollapse.classList.contains('show') && !document.querySelector('.mobile-menu-close')) {
+                const closeButton = document.createElement('button');
+                closeButton.classList.add('mobile-menu-close');
+                closeButton.setAttribute('aria-label', 'Close menu');
+                navbarCollapse.appendChild(closeButton);
+                
+                // Add event listener to close button
+                closeButton.addEventListener('click', closeMenu);
             }
         });
         
-        // Helper function to forcefully remove the overlay
-        function removeOverlay() {
+        // Close menu when overlay is clicked
+        document.addEventListener('click', function(event) {
+            if (event.target.classList.contains('mobile-menu-overlay') && event.target.classList.contains('active')) {
+                navbarCollapse.classList.remove('show');
+                event.target.classList.remove('active');
+                document.body.classList.remove('menu-open');
+            }
+        });
+        
+        // Close menu when nav link is clicked
+        navLinks.forEach(function(link) {
+            link.addEventListener('click', closeMenu);
+        });
+        
+        /**
+         * Helper function to close mobile menu
+         */
+        function closeMenu() {
+            navbarCollapse.classList.remove('show');
+            
             const overlay = document.querySelector('.mobile-menu-overlay');
             if (overlay) {
                 overlay.classList.remove('active');
-                // Force immediate removal instead of waiting
-                if (overlay.parentNode) {
-                    overlay.parentNode.removeChild(overlay);
-                }
             }
-        }
-        
-        // Handle the close button click
-        if (mobileMenuClose) {
-            mobileMenuClose.addEventListener('click', function(e) {
-                e.stopPropagation();
-                closeMenu();
-            });
-        }
-        
-        // Close menu when clicking a link in mobile
-        const navLinks = document.querySelectorAll('.nav-link');
-        navLinks.forEach(link => {
-            link.addEventListener('click', function(e) {
-                if (window.innerWidth < 992 && navbarCollapse.classList.contains('show')) {
-                    // First remove the collapse class to close the menu
-                    navbarCollapse.classList.remove('show');
-                    // Then force remove the overlay
-                    removeOverlay();
-                    document.body.classList.remove('menu-open');
-                }
-            });
-        });
-        
-        // Function to close the menu and remove overlay
-        function closeMenu() {
-            navbarCollapse.classList.remove('show');
-            removeOverlay();
-            document.body.classList.remove('menu-open');
-        }
-    }
-    
-    // Close mobile menu when window is resized to desktop size
-    window.addEventListener('resize', function() {
-        if (window.innerWidth >= 992 && navbarCollapse && navbarCollapse.classList.contains('show')) {
-            removeOverlay();
-            navbarCollapse.classList.remove('show');
-            document.body.classList.remove('menu-open');
-        }
-    });
-    
-    // Helper function to force remove overlay
-    function removeOverlay() {
-        const overlay = document.querySelector('.mobile-menu-overlay');
-        if (overlay) {
-            overlay.classList.remove('active');
-            // Remove immediately, don't wait for animation
-            if (overlay.parentNode) {
-                overlay.parentNode.removeChild(overlay);
-            }
-        }
-    }
-    
-    // Convert hover effects to touch events on mobile
-    if ('ontouchstart' in window || navigator.msMaxTouchPoints) {
-        const cards = document.querySelectorAll('.service-card, .feature-card, .testimonial-card');
-        
-        cards.forEach(card => {
-            card.addEventListener('touchstart', function() {
-                this.classList.add('touch-focus');
-            }, {passive: true});
             
-            card.addEventListener('touchend', function() {
-                setTimeout(() => {
-                    this.classList.remove('touch-focus');
-                }, 300);
-            }, {passive: true});
-        });
+            document.body.classList.remove('menu-open');
+        }
     }
     
-    // Fix for 100vh issue on mobile browsers
-    function setMobileViewportHeight() {
-        const vh = window.innerHeight * 0.01;
-        document.documentElement.style.setProperty('--vh', `${vh}px`);
-    }
-    
-    setMobileViewportHeight();
-    window.addEventListener('resize', setMobileViewportHeight);
-    
-    // Enable horizontal scroll for tabs on mobile with touch
-    const tabNavs = document.querySelectorAll('.features-tab-nav');
-    tabNavs.forEach(nav => {
-        let isDown = false;
-        let startX;
-        let scrollLeft;
+    // Add touch event support for all clickable elements on mobile
+    const touchElements = document.querySelectorAll('a, button, .service-card, .testimonial-card');
+    touchElements.forEach(function(el) {
+        el.addEventListener('touchstart', function() {
+            this.classList.add('touch-focus');
+        }, { passive: true });
         
-        nav.addEventListener('mousedown', (e) => {
-            if (window.innerWidth < 992) {
-                isDown = true;
-                startX = e.pageX - nav.offsetLeft;
-                scrollLeft = nav.scrollLeft;
-            }
-        });
-        
-        nav.addEventListener('mouseleave', () => {
-            isDown = false;
-        });
-        
-        nav.addEventListener('mouseup', () => {
-            isDown = false;
-        });
-        
-        nav.addEventListener('mousemove', (e) => {
-            if (!isDown) return;
-            e.preventDefault();
-            const x = e.pageX - nav.offsetLeft;
-            const walk = (x - startX) * 2;
-            nav.scrollLeft = scrollLeft - walk;
-        });
-        
-        // For touch devices
-        nav.addEventListener('touchstart', (e) => {
-            if (window.innerWidth < 992) {
-                startX = e.touches[0].pageX - nav.offsetLeft;
-                scrollLeft = nav.scrollLeft;
-            }
-        }, {passive: true});
-        
-        nav.addEventListener('touchmove', (e) => {
-            if (window.innerWidth < 992) {
-                const x = e.touches[0].pageX - nav.offsetLeft;
-                const walk = (x - startX) * 2;
-                nav.scrollLeft = scrollLeft - walk;
-            }
-        }, {passive: true});
+        el.addEventListener('touchend', function() {
+            this.classList.remove('touch-focus');
+        }, { passive: true });
     });
+    
+    // Set mobile viewport height (fix for 100vh on mobile)
+    updateViewportHeight();
+    
+    // Performance optimization - lazy load images on mobile
+    if ('IntersectionObserver' in window) {
+        const imgObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const img = entry.target;
+                    const src = img.getAttribute('data-src');
+                    
+                    if (src) {
+                        img.src = src;
+                        img.removeAttribute('data-src');
+                    }
+                    
+                    observer.unobserve(img);
+                }
+            });
+        });
+        
+        // Get all images with data-src attribute
+        const lazyImages = document.querySelectorAll('img[data-src]');
+        lazyImages.forEach(img => {
+            imgObserver.observe(img);
+        });
+    }
 }
 
 /**
@@ -941,28 +928,6 @@ function initCountUpAnimation() {
     statNumbers.forEach(statNumber => {
         observer.observe(statNumber);
     });
-}
-
-// Lazy load images
-if ('loading' in HTMLImageElement.prototype) {
-    // Browser supports native lazy loading
-    const lazyImages = document.querySelectorAll('img[loading="lazy"]');
-    lazyImages.forEach(img => {
-        img.src = img.dataset.src;
-    });
-} else {
-    // Fallback for browsers that don't support native lazy loading
-    const lazyLoadScript = document.createElement('script');
-    lazyLoadScript.src = 'https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js';
-    document.head.appendChild(lazyLoadScript);
-    
-    lazyLoadScript.onload = function() {
-        const observer = lozad('.lozad', {
-            rootMargin: '10px 0px',
-            threshold: 0.1
-        });
-        observer.observe();
-    };
 }
 
 /**

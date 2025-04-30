@@ -30,10 +30,17 @@
   - **Asset Management:** Learn to track and manage company assets.
   - **Financial Accounting:** Gain practical skills in core accounting principles.
 
+  ### Real-World Retail Hardware & Systems
+  - **Real-time Barcode Scanners:** Gain hands-on experience with industry-standard barcode scanning technology for inventory management and point-of-sale operations.
+  - **Barcode Printers:** Learn to create, print, and manage product barcodes for efficient inventory tracking and retail operations.
+  - **POS Printing Systems:** Master receipt generation, invoice printing, and transaction documentation in retail environments.
+  - **Integrated Retail Systems:** Experience how these hardware components integrate with software systems to create a complete retail operation solution.
+
   ### Practical Industry Applications
   - Experience projects related to trading, manufacturing, schools, hospitals, colleges, service organizations, and more.
   - Learn to apply business principles in various industry contexts.
   - Develop sector-specific knowledge applicable to your career path.
+  - Participate in real-time shop and establishment simulations that mirror actual business operations in retail and service sectors.
 
 ## Lab Features Section
 - **Headline:** Explore Our State-of-the-Art Commerce Lab Facility
@@ -86,6 +93,7 @@
   - **Software Suite:** Includes Microsoft Office, Power BI, SAP, Salesforce, and Bloomberg Terminal access.
   - **Interactive Tools:** Features 2 interactive whiteboards and 1 video conferencing system.
   - **Specialized Business Tools:** Point of Sale systems, inventory management software, and market simulation tools.
+  - **Retail Hardware:** Barcode scanners, barcode printers, and POS printing machines for authentic retail operations training.
   - **Hands-On Learning Environment:** All systems are designed for practical application and real-world simulations.
 
 ## Contact Section

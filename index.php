@@ -16,7 +16,7 @@ $metaDescription = "Commerce Lab offers hands-on learning experiences in ERP sys
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
     <title><?php echo $pageTitle; ?></title>
     <meta name="description" content="<?php echo $metaDescription; ?>">
     
@@ -33,12 +33,20 @@ $metaDescription = "Commerce Lab offers hands-on learning experiences in ERP sys
     <meta name="twitter:description" content="<?php echo $metaDescription; ?>">
     <meta name="twitter:image" content="https://commercelab.in/images/commerce-lab-og.jpg">
     
+    <!-- Theme Color for Mobile Browsers -->
+    <meta name="theme-color" content="#336699">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#336699">
+    
     <!-- Canonical URL -->
     <link rel="canonical" href="https://commercelab.in">
     
-    <!-- Fonts -->
+    <!-- Preconnect to External Resources -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdn.jsdelivr.net">
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    
+    <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;500;600;700;800&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
     
     <!-- Bootstrap CSS -->
@@ -86,7 +94,7 @@ $metaDescription = "Commerce Lab offers hands-on learning experiences in ERP sys
     }
     </script>
     
-    <!-- Google tag (gtag.js) -->
+    <!-- Google tag (gtag.js) - Load asynchronously -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-GVEN6YSYRN"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -289,6 +297,13 @@ $metaDescription = "Commerce Lab offers hands-on learning experiences in ERP sys
                     </div>
                     <h3>CRM</h3>
                     <p>Manage customer interactions across the entire customer lifecycle</p>
+                </div>
+                <div class="service-card" data-service="retail-hardware">
+                    <div class="service-icon">
+                        <i class="fas fa-barcode"></i>
+                    </div>
+                    <h3>Retail Hardware</h3>
+                    <p>Experience real-time barcode scanners, printers, and POS machines for authentic retail operations</p>
                 </div>
             </div>
             
@@ -526,6 +541,27 @@ $metaDescription = "Commerce Lab offers hands-on learning experiences in ERP sys
                         <li>Loyalty program administration</li>
                     </ul>
                     <p>Gain hands-on experience with CRM software to manage customer relationships effectively, driving customer retention and growth through personalized engagement strategies.</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="service-popup" id="popup-retail-hardware">
+            <div class="popup-content">
+                <div class="popup-header">
+                    <h3><i class="fas fa-barcode"></i> Retail Hardware Systems</h3>
+                    <button class="popup-close"><i class="fas fa-times"></i></button>
+                </div>
+                <div class="popup-body">
+                    <p>Experience industry-standard retail hardware used in shops and retail establishments:</p>
+                    <ul>
+                        <li>Real-time Barcode Scanners: Learn inventory tracking and point-of-sale processing with professional barcode scanning technology</li>
+                        <li>Barcode Printers: Create and print custom barcodes for effective inventory and product management</li>
+                        <li>POS Printing Machines: Generate receipts, invoices, and transaction documentation in a simulated retail environment</li>
+                        <li>Integrated Systems: Understand how hardware components connect with inventory and sales software</li>
+                        <li>Retail Automation: Experience end-to-end retail operations from product labeling to final sale</li>
+                        <li>Real-time Shop Simulations: Participate in authentic retail establishment workflows</li>
+                    </ul>
+                    <p>Work with the same hardware used in modern retail businesses to gain practical skills in inventory management, point-of-sale operations, and retail workflows. This hands-on experience with real-world technology prepares you for immediate productivity in retail and business environments.</p>
                 </div>
             </div>
         </div>
@@ -788,9 +824,9 @@ $metaDescription = "Commerce Lab offers hands-on learning experiences in ERP sys
                 <p>Real success stories from our graduates</p>
             </div>
             
-            <div class="testimonials-wrapper" data-aos="fade-up" data-aos-delay="100">
+            <div class="testimonials-wrapper">
                 <div class="testimonials-grid">
-                    <div class="testimonial-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="testimonial-card" data-aos="fade-up" data-aos-duration="800" data-aos-delay="100">
                         <div class="testimonial-quote">
                             <i class="fas fa-quote-left"></i>
                         </div>
@@ -808,7 +844,7 @@ $metaDescription = "Commerce Lab offers hands-on learning experiences in ERP sys
                         </div>
                     </div>
                     
-                    <div class="testimonial-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="testimonial-card" data-aos="fade-up" data-aos-duration="800" data-aos-delay="200">
                         <div class="testimonial-quote">
                             <i class="fas fa-quote-left"></i>
                         </div>
@@ -826,7 +862,7 @@ $metaDescription = "Commerce Lab offers hands-on learning experiences in ERP sys
                         </div>
                     </div>
                     
-                    <div class="testimonial-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="testimonial-card" data-aos="fade-up" data-aos-duration="800" data-aos-delay="300">
                         <div class="testimonial-quote">
                             <i class="fas fa-quote-left"></i>
                         </div>
@@ -1070,22 +1106,33 @@ $metaDescription = "Commerce Lab offers hands-on learning experiences in ERP sys
     <!-- Footer -->
     <?php include 'includes/footer.php'; ?>
     
-    <!-- Bootstrap Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-    
-    <!-- AOS Animation -->
+    <!-- Include JavaScript files -->
+    <!-- AOS Animation Library -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     
-    <!-- Custom JavaScript -->
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Image Optimization Script -->
+    <script src="js/image-optimizer.js"></script>
+    
+    <!-- Main JavaScript -->
     <script src="js/main.js"></script>
     
     <!-- Initialize AOS -->
     <script>
-        AOS.init({
-            once: true,
-            duration: 800,
-            offset: 100,
-            easing: 'ease-in-out'
+        // Initialize AOS with custom settings
+        document.addEventListener('DOMContentLoaded', function() {
+            // Delay AOS initialization to improve page load performance
+            setTimeout(function() {
+                AOS.init({
+                    duration: 800,
+                    easing: 'ease-in-out',
+                    once: true,
+                    mirror: false,
+                    disable: window.innerWidth < 768 ? true : false
+                });
+            }, 500);
         });
     </script>
 </body>
