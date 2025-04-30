@@ -554,12 +554,12 @@ $metaDescription = "Commerce Lab offers hands-on learning experiences in ERP sys
                 <div class="popup-body">
                     <p>Experience industry-standard retail hardware used in shops and retail establishments:</p>
                     <ul>
-                        <li>Real-time Barcode Scanners: Learn inventory tracking and point-of-sale processing with professional barcode scanning technology</li>
-                        <li>Barcode Printers: Create and print custom barcodes for effective inventory and product management</li>
-                        <li>POS Printing Machines: Generate receipts, invoices, and transaction documentation in a simulated retail environment</li>
-                        <li>Integrated Systems: Understand how hardware components connect with inventory and sales software</li>
-                        <li>Retail Automation: Experience end-to-end retail operations from product labeling to final sale</li>
-                        <li>Real-time Shop Simulations: Participate in authentic retail establishment workflows</li>
+                        <li>Real-time Barcode Scanners: Learn inventory tracking and point-of-sale processing with professional barcode scanning technology for efficient retail operations</li>
+                        <li>Barcode Printers: Create and print custom barcodes for effective inventory and product management in modern retail environments</li>
+                        <li>POS Printing Machines: Generate receipts, invoices, and transaction documentation in a simulated retail environment with industry-standard equipment</li>
+                        <li>Integrated Systems: Understand how hardware components connect with inventory and sales software for seamless retail operations</li>
+                        <li>Retail Automation: Experience end-to-end retail operations from product labeling to final sale using professional-grade equipment</li>
+                        <li>Real-time Shop Simulations: Participate in authentic retail establishment workflows that mirror actual business operations</li>
                     </ul>
                     <p>Work with the same hardware used in modern retail businesses to gain practical skills in inventory management, point-of-sale operations, and retail workflows. This hands-on experience with real-world technology prepares you for immediate productivity in retail and business environments.</p>
                 </div>
@@ -599,7 +599,7 @@ $metaDescription = "Commerce Lab offers hands-on learning experiences in ERP sys
                                     <h3>Workstations and Computer Systems</h3>
                                     <p>Our lab features high-performance computing resources that prepare you for professional workplace environments through realistic simulations.</p>
                                     <ul class="feature-list">
-                                        <li><i class="fas fa-check-circle"></i> High-Performance Computers: Utilize machines equipped to handle demanding business software and simulations</li>
+                                        <li><i class="fas fa-check-circle"></i> High-Performance Computers: Utilize machines equipped with dual monitors to handle demanding business software and simulations</li>
                                         <li><i class="fas fa-check-circle"></i> Networked Environment: Facilitates resource sharing and collaborative projects</li>
                                         <li><i class="fas fa-check-circle"></i> Dual high-resolution monitors for enhanced productivity</li>
                                         <li><i class="fas fa-check-circle"></i> Ergonomic workspaces designed for comfort and efficiency</li>
@@ -626,6 +626,7 @@ $metaDescription = "Commerce Lab offers hands-on learning experiences in ERP sys
                                         <li><i class="fas fa-check-circle"></i> ERP Systems: Learn integrated business processes using industry-standard software like SAP, Tally, or Oracle</li>
                                         <li><i class="fas fa-check-circle"></i> Reporting & Analysis Tools: Master data analysis with Power BI and Excel</li>
                                         <li><i class="fas fa-check-circle"></i> CRM Software: Manage customer interactions using systems like Salesforce</li>
+                                        <li><i class="fas fa-check-circle"></i> Bloomberg Terminal: Access real-time financial data and professional market analytics used by leading financial institutions</li>
                                         <li><i class="fas fa-check-circle"></i> Market Simulation Tools: Practice buying and selling in realistic stock trading simulators</li>
                                         <li><i class="fas fa-check-circle"></i> Point of Sale (POS) Systems: Get experience with retail transactions and sales management</li>
                                         <li><i class="fas fa-check-circle"></i> GST Simulators: Understand Goods and Services Tax processes</li>
@@ -649,8 +650,8 @@ $metaDescription = "Commerce Lab offers hands-on learning experiences in ERP sys
                                     <h3>Collaboration Tools</h3>
                                     <p>Our cutting-edge collaboration tools foster teamwork and facilitate learning from industry experts, developing the communication skills essential for today's business environment.</p>
                                     <ul class="feature-list">
-                                        <li><i class="fas fa-check-circle"></i> Interactive Whiteboards: Enhance learning through interactive teaching and group work</li>
-                                        <li><i class="fas fa-check-circle"></i> Video Conferencing Systems: Connect with industry experts, attend virtual guest lectures, and collaborate remotely</li>
+                                        <li><i class="fas fa-check-circle"></i> Interactive Whiteboards: 2 state-of-the-art boards to enhance learning through interactive teaching and group work</li>
+                                        <li><i class="fas fa-check-circle"></i> Video Conferencing System: Advanced conferencing setup to connect with industry experts, attend virtual guest lectures, and collaborate remotely</li>
                                         <li><i class="fas fa-check-circle"></i> Collaborative problem-solving spaces</li>
                                         <li><i class="fas fa-check-circle"></i> Digital presentation equipment</li>
                                     </ul>

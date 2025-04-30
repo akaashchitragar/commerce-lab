@@ -131,7 +131,7 @@ function initPreloader() {
     document.body.style.overflow = 'hidden';
     
     // Hide preloader after window loads with a minimum display time
-    const minimumLoadingTime = 1000; // Reduced from 2500ms for better performance
+    const minimumLoadingTime = 500; // Reduced from 1000ms for even faster loading
     const startTime = new Date().getTime();
     
     // Add initial viewport height calculation
@@ -160,11 +160,11 @@ function initPreloader() {
                 if (preloader.parentNode) {
                     preloader.parentNode.removeChild(preloader);
                 }
-            }, 600); // Match the CSS transition duration
+            }, 400); // Reduced from 600ms to 400ms for faster transition
         }, remainingTime);
     });
     
-    // Fallback: Hide preloader after a maximum time (3 seconds) in case load event doesn't trigger
+    // Fallback: Hide preloader after a maximum time (2 seconds) in case load event doesn't trigger
     setTimeout(function() {
         if (preloader && !preloader.classList.contains('hide')) {
             // Prepare hero elements
@@ -182,9 +182,9 @@ function initPreloader() {
                 if (preloader.parentNode) {
                     preloader.parentNode.removeChild(preloader);
                 }
-            }, 600);
+            }, 400); // Reduced from 600ms to 400ms for faster transition
         }
-    }, 3000); // Reduced from 5000ms
+    }, 2000); // Reduced from 3000ms to 2000ms
 }
 
 /**
@@ -782,6 +782,7 @@ function initMobileResponsive() {
     if (navbarToggler && navbarCollapse) {
         // Toggle navbar collapse when toggler is clicked
         navbarToggler.addEventListener('click', function() {
+            const isExpanding = !navbarCollapse.classList.contains('show');
             navbarCollapse.classList.toggle('show');
             
             // Toggle overlay
@@ -791,7 +792,12 @@ function initMobileResponsive() {
             }
             
             // Toggle body class to prevent scrolling
-            document.body.classList.toggle('menu-open');
+            if (isExpanding) {
+                document.body.classList.add('menu-open');
+            } else {
+                document.body.classList.remove('menu-open');
+                document.body.style.overflow = '';
+            }
             
             // Add close button to mobile menu if it doesn't exist
             if (navbarCollapse.classList.contains('show') && !document.querySelector('.mobile-menu-close')) {
@@ -814,6 +820,16 @@ function initMobileResponsive() {
             }
         });
         
+        // Close menu when clicking outside navbar area
+        document.addEventListener('click', function(event) {
+            // Check if menu is open and click is outside the navbar
+            if (navbarCollapse.classList.contains('show') && 
+                !event.target.closest('.navbar') && 
+                !event.target.classList.contains('navbar-toggler')) {
+                closeMenu();
+            }
+        });
+        
         // Close menu when nav link is clicked
         navLinks.forEach(function(link) {
             link.addEventListener('click', closeMenu);
@@ -831,6 +847,9 @@ function initMobileResponsive() {
             }
             
             document.body.classList.remove('menu-open');
+            
+            // Ensure the body overflow is restored
+            document.body.style.overflow = '';
         }
     }
     
