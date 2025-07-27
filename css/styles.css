@@ -1242,7 +1242,7 @@ section {
 .college-integration-section {
     background: linear-gradient(135deg, #f8fafc 0%, #edf2f7 100%);
     position: relative;
-    padding: 60px 0;
+    padding: 80px 0;
     overflow: hidden;
 }
 
@@ -1258,10 +1258,10 @@ section {
 }
 
 .college-logos-wrapper {
-    margin: 40px 0;
+    margin: 50px 0;
     overflow: hidden;
     position: relative;
-    padding: 30px 0;
+    padding: 40px 0;
 }
 
 .college-logos-wrapper::before,
@@ -1290,10 +1290,18 @@ section {
     align-items: center;
     animation: scrollLogos 30s linear infinite;
     width: fit-content;
+    will-change: transform;
 }
 
 .college-logos-track:hover {
     animation-play-state: paused;
+}
+
+/* Touch devices - pause on touch */
+@media (hover: none) {
+    .college-logos-wrapper:active .college-logos-track {
+        animation-play-state: paused;
+    }
 }
 
 @keyframes scrollLogos {
@@ -1302,6 +1310,32 @@ section {
     }
     100% {
         transform: translateX(-50%);
+    }
+}
+
+/* Respect user's motion preferences */
+@media (prefers-reduced-motion: reduce) {
+    .college-logos-track {
+        animation: none;
+    }
+    
+    .college-logos-wrapper {
+        overflow-x: auto;
+        scrollbar-width: thin;
+    }
+    
+    .college-logos-wrapper::-webkit-scrollbar {
+        height: 4px;
+    }
+    
+    .college-logos-wrapper::-webkit-scrollbar-track {
+        background: rgba(0, 0, 0, 0.1);
+        border-radius: 2px;
+    }
+    
+    .college-logos-wrapper::-webkit-scrollbar-thumb {
+        background: var(--primary);
+        border-radius: 2px;
     }
 }
 
@@ -1373,11 +1407,55 @@ section {
     .college-logo {
         max-height: 60px;
     }
+    
+    .college-logos-wrapper {
+        margin: 30px 0;
+    }
+}
+
+@media (max-width: 992px) {
+    .college-integration-section {
+        padding: 60px 0;
+    }
+    
+    .college-logo-item {
+        margin: 0 25px;
+        width: 170px;
+        height: 95px;
+        padding: 18px;
+    }
+    
+    .college-logo {
+        max-height: 55px;
+    }
+    
+    .college-logos-track {
+        animation-duration: 28s;
+    }
 }
 
 @media (max-width: 768px) {
     .college-integration-section {
         padding: 50px 0;
+    }
+    
+    .college-integration-section .section-header {
+        margin-bottom: 30px;
+    }
+    
+    .college-integration-section .section-header h2 {
+        font-size: clamp(1.75rem, 4vw, 2.25rem);
+        margin-bottom: 1rem;
+    }
+    
+    .college-integration-section .section-header p {
+        font-size: 1rem;
+        margin-bottom: 0;
+    }
+    
+    .college-logos-wrapper {
+        margin: 25px 0;
+        padding: 25px 0;
     }
     
     .college-logos-track {
@@ -1386,33 +1464,128 @@ section {
     
     .college-logo-item {
         margin: 0 20px;
-        width: 160px;
-        height: 90px;
+        width: 150px;
+        height: 85px;
         padding: 15px;
+        border-radius: 12px;
     }
     
     .college-logo {
-        max-height: 50px;
+        max-height: 45px;
     }
     
-
+    .college-shape-1 {
+        width: 200px;
+        height: 200px;
+        top: 15%;
+        right: -100px;
+    }
+    
+    .college-shape-2 {
+        width: 150px;
+        height: 150px;
+        bottom: 25%;
+        left: -75px;
+    }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 576px) {
+    .college-integration-section {
+        padding: 40px 0;
+    }
+    
+    .college-integration-section .section-header {
+        margin-bottom: 25px;
+        padding: 0 15px;
+    }
+    
+    .college-integration-section .section-header h2 {
+        font-size: clamp(1.5rem, 5vw, 2rem);
+        line-height: 1.3;
+    }
+    
+    .college-logos-wrapper {
+        margin: 20px 0;
+        padding: 20px 0;
+    }
+    
     .college-logos-wrapper::before,
     .college-logos-wrapper::after {
-        width: 50px;
+        width: 40px;
+    }
+    
+    .college-logos-track {
+        animation-duration: 22s;
     }
     
     .college-logo-item {
         margin: 0 15px;
-        width: 140px;
-        height: 80px;
-        padding: 10px;
+        width: 130px;
+        height: 75px;
+        padding: 12px;
+        border-radius: 10px;
     }
     
     .college-logo {
-        max-height: 40px;
+        max-height: 38px;
+    }
+}
+
+@media (max-width: 480px) {
+    .college-integration-section {
+        padding: 35px 0;
+    }
+    
+    .college-integration-section .section-header h2 {
+        font-size: clamp(1.4rem, 5vw, 1.8rem);
+    }
+    
+    .college-logos-wrapper::before,
+    .college-logos-wrapper::after {
+        width: 30px;
+    }
+    
+    .college-logos-track {
+        animation-duration: 20s;
+    }
+    
+    .college-logo-item {
+        margin: 0 12px;
+        width: 120px;
+        height: 70px;
+        padding: 10px;
+        border-radius: 8px;
+    }
+    
+    .college-logo {
+        max-height: 35px;
+    }
+    
+    .college-shape-1,
+    .college-shape-2 {
+        display: none;
+    }
+}
+
+@media (max-width: 375px) {
+    .college-integration-section .section-header {
+        padding: 0 10px;
+    }
+    
+    .college-logos-wrapper::before,
+    .college-logos-wrapper::after {
+        width: 25px;
+    }
+    
+    .college-logo-item {
+        margin: 0 10px;
+        width: 110px;
+        height: 65px;
+        padding: 8px;
+    }
+    
+    .college-logo {
+        max-height: 32px;
     }
 }
 

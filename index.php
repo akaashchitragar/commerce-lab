@@ -260,7 +260,7 @@ $metaDescription = "Commerce Lab offers hands-on learning experiences in ERP sys
                 <p>Partnering with prestigious colleges and universities to provide industry-relevant practical training</p>
             </div>
             
-            <div class="college-logos-wrapper" data-aos="fade-up" data-aos-delay="200">
+            <div class="college-logos-wrapper" data-aos="fade-up" data-aos-delay="200" role="region" aria-label="Academic partner logos">
                 <div class="college-logos-track">
                     <!-- First set of logos -->
                     <div class="college-logo-item">
