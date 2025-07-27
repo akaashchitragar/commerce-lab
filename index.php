@@ -248,6 +248,76 @@ $metaDescription = "Commerce Lab offers hands-on learning experiences in ERP sys
         </div>
     </section>
     
+    <!-- College Integration Section -->
+    <section id="college-integration" class="college-integration-section">
+        <div class="container">
+            <div class="section-header text-center" data-aos="fade-up">
+                <div class="section-badge">Our Academic Partners</div>
+                <h2>Trusted by Leading Educational Institutions</h2>
+                <p>Partnering with prestigious colleges and universities to provide industry-relevant practical training</p>
+            </div>
+            
+            <div class="college-logos-wrapper" data-aos="fade-up" data-aos-delay="200">
+                <div class="college-logos-track">
+                    <!-- First set of logos -->
+                    <div class="college-logo-item">
+                        <img src="images/logo/Chinmay-degree-logo.png" alt="Chinmay Degree College" class="college-logo">
+                    </div>
+                    <div class="college-logo-item">
+                        <img src="images/logo/Chinmay-PU-logo.png" alt="Chinmay PU College" class="college-logo">
+                    </div>
+                    <div class="college-logo-item">
+                        <img src="images/logo/Jain-PUDgree (2).webp" alt="Jain University" class="college-logo">
+                    </div>
+                    <div class="college-logo-item">
+                        <img src="images/logo/Kittur-College-Header-Logo (2).jpg" alt="Kittur College" class="college-logo">
+                    </div>
+                    <div class="college-logo-item">
+                        <img src="images/logo/nehru.png" alt="Nehru College" class="college-logo">
+                    </div>
+                    <div class="college-logo-item">
+                        <img src="images/logo/Oxford-logo.png" alt="Oxford College" class="college-logo">
+                    </div>
+                    <div class="college-logo-item">
+                        <img src="images/logo/SJMVS (2).jpeg" alt="SJMVS College" class="college-logo">
+                    </div>
+                    <div class="college-logo-item">
+                        <img src="images/logo/vivekanand.png" alt="Vivekanand College" class="college-logo">
+                    </div>
+                    
+                    <!-- Duplicate set for seamless loop -->
+                    <div class="college-logo-item">
+                        <img src="images/logo/Chinmay-degree-logo.png" alt="Chinmay Degree College" class="college-logo">
+                    </div>
+                    <div class="college-logo-item">
+                        <img src="images/logo/Chinmay-PU-logo.png" alt="Chinmay PU College" class="college-logo">
+                    </div>
+                    <div class="college-logo-item">
+                        <img src="images/logo/Jain-PUDgree (2).webp" alt="Jain University" class="college-logo">
+                    </div>
+                    <div class="college-logo-item">
+                        <img src="images/logo/Kittur-College-Header-Logo (2).jpg" alt="Kittur College" class="college-logo">
+                    </div>
+                    <div class="college-logo-item">
+                        <img src="images/logo/nehru.png" alt="Nehru College" class="college-logo">
+                    </div>
+                    <div class="college-logo-item">
+                        <img src="images/logo/Oxford-logo.png" alt="Oxford College" class="college-logo">
+                    </div>
+                    <div class="college-logo-item">
+                        <img src="images/logo/SJMVS (2).jpeg" alt="SJMVS College" class="college-logo">
+                    </div>
+                    <div class="college-logo-item">
+                        <img src="images/logo/vivekanand.png" alt="Vivekanand College" class="college-logo">
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="college-shape college-shape-1"></div>
+        <div class="college-shape college-shape-2"></div>
+    </section>
+    
     <!-- About Section -->
     <section id="about" class="about-section">
         <div class="container about-container">
