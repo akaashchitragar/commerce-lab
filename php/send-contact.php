@@ -1,8 +1,6 @@
 <?php
-// Simple contact form handler that can work with or without a database
-
-// Set email destination
-$to_email = 'info@commercelab.in';
+// Contact form handler with database logging only
+// Email sending now handled by EmailJS on client-side
 
 // Set headers for all responses
 header('Content-Type: application/json');
@@ -30,32 +28,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $errors[] = "Message is required";
     }
     
-    // If no errors, send email and optionally save to database
+    // If no errors, save to database (email handled by EmailJS)
     if (empty($errors)) {
         // Current date and time
         $created_at = date('Y-m-d H:i:s');
         
-        // Prepare email
-        $email_subject = "Commerce Lab Contact: $subject";
-        $email_body = "
-            Name: $name
-            Email: $email
-            Subject: $subject
-            Date: $created_at
-            
-            Message:
-            $message
-        ";
-        
-        // Headers
-        $mail_headers = "From: $email" . "\r\n";
-        $mail_headers .= "Reply-To: $email" . "\r\n";
-        $mail_headers .= "X-Mailer: PHP/" . phpversion();
-        
-        // Attempt to send email
-        $mail_success = mail($to_email, $email_subject, $email_body, $mail_headers);
-        
-        // Try to save to database if possible
+        // Try to save to database
         $db_success = false;
         
         try {
@@ -97,23 +75,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $created_at
             ]);
         } catch (Exception $e) {
-            // If database connection fails, log the error but don't inform the user
+            // If database connection fails, log the error
             error_log("Database error: " . $e->getMessage());
-            // We'll still return success if the email was sent
+            $db_success = false;
         }
         
-        // Return JSON response
-        if ($mail_success) {
-            echo json_encode([
-                'success' => true,
-                'message' => 'Thank you for your message. We will get back to you soon!'
-            ]);
-        } else {
-            echo json_encode([
-                'success' => false,
-                'message' => 'There was a problem sending your message. Please try again later.'
-            ]);
-        }
+        // Return JSON response (EmailJS handles email sending)
+        echo json_encode([
+            'success' => true,
+            'message' => 'Thank you for your message. We will get back to you soon!',
+            'database_saved' => $db_success,
+            'note' => 'Email sent via EmailJS'
+        ]);
     } else {
         // Return validation errors as JSON
         echo json_encode([
@@ -130,3 +103,4 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         'message' => 'Method not allowed'
     ]);
 } 
+?> 

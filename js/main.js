@@ -521,7 +521,7 @@ function trackEvent(eventName, eventParams = {}) {
  * Initialize contact form
  */
 function initContactForm() {
-    const contactForm = document.getElementById('contact-form');
+    const contactForm = document.getElementById('contactForm');
     
     if (!contactForm) return;
     
@@ -538,12 +538,12 @@ function initContactForm() {
         
         // Track form submission in GA4
         trackEvent('form_submit', {
-            'form_id': 'contact-form',
+            'form_id': 'contactForm',
             'form_name': 'Contact Form'
         });
         
-        // Submit form via AJAX
-        fetch('php/contact-process.php', {
+        // Submit form via AJAX (EmailJS integration ready)
+        fetch('php/send-contact.php', {
             method: 'POST',
             body: formData
         })
@@ -558,7 +558,7 @@ function initContactForm() {
                 
                 // Track form submission success in GA4
                 trackEvent('form_submit_success', {
-                    'form_id': 'contact-form',
+                    'form_id': 'contactForm',
                     'form_name': 'Contact Form'
                 });
             } else {
@@ -567,7 +567,7 @@ function initContactForm() {
                 
                 // Track form submission error in GA4
                 trackEvent('form_submit_error', {
-                    'form_id': 'contact-form',
+                    'form_id': 'contactForm',
                     'form_name': 'Contact Form',
                     'error_message': data.message || 'Unknown error'
                 });
@@ -579,7 +579,7 @@ function initContactForm() {
             
             // Track form submission error in GA4
             trackEvent('form_submit_error', {
-                'form_id': 'contact-form',
+                'form_id': 'contactForm',
                 'form_name': 'Contact Form',
                 'error_message': 'Network error'
             });

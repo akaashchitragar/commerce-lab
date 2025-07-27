@@ -68,6 +68,9 @@ $metaDescription = "Commerce Lab offers hands-on learning experiences in ERP sys
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/styles.css">
     
+    <!-- EmailJS Library -->
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="images/favicon.png">
     <link rel="apple-touch-icon" href="images/apple-touch-icon.png">

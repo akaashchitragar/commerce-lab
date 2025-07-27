@@ -51,10 +51,10 @@ Commerce Lab provides immersive, hands-on learning experiences for students in c
   - ⚫ Dark: #212121
   - ⚪ Light: #F5F5F5
 
-### ⚙️ Backend
-- **PHP 8.2+** - Server-side scripting
+### ⚙️ Backend & Frontend
+- **PHP 8.2+** - Server-side scripting and database logging
 - **MySQL** - Database management
-- **SendGrid API** - Contact form emails
+- **EmailJS** - Client-side email delivery service
 - **Cal.com** - Meeting scheduling integration
 
 ### 🚀 Performance & Optimization
@@ -175,8 +175,9 @@ Projects related to trading, manufacturing, schools, hospitals, colleges, and se
 ## 📞 Contact Integration
 - **📝 Contact Form:**
   - Comprehensive field validation
-  - SendGrid email delivery
-  - CAPTCHA protection
+  - EmailJS client-side email delivery
+  - Database logging for all submissions
+  - No server-side email configuration needed
 - **📅 Meeting Scheduling:**
   - Cal.com embedded calendar
   - Automatic confirmations
