@@ -1130,25 +1130,15 @@ $metaDescription = "Commerce Lab offers hands-on learning experiences in ERP sys
                                     <h3>Send Us a Message</h3>
                                     <p>Fill out the form below and we'll get back to you as soon as possible.</p>
                                     
-                                    <?php if (isset($_GET['contact']) && $_GET['contact'] == 'success'): ?>
-                                        <div class="alert alert-success">
-                                            Thank you for your message! We'll get back to you as soon as possible.
-                                        </div>
-                                    <?php elseif (isset($_GET['contact']) && $_GET['contact'] == 'error'): ?>
-                                        <div class="alert alert-danger">
-                                            <?php echo isset($_GET['message']) ? htmlspecialchars($_GET['message']) : 'Sorry, there was a problem sending your message. Please try again later.'; ?>
-                                        </div>
-                                    <?php endif; ?>
-                                    
-                                    <form action="php/send-contact.php" method="post" id="contactForm">
+                                    <form id="contactForm" novalidate>
                                         <div class="form-row">
                                             <div class="form-group">
-                                                <label for="name">Your Name</label>
-                                                <input type="text" class="form-control" id="name" name="name" placeholder="Enter your name" required>
+                                                <label for="from_name">Your Name</label>
+                                                <input type="text" class="form-control" id="from_name" name="from_name" placeholder="Enter your name" required>
                                             </div>
                                             <div class="form-group">
-                                                <label for="email">Your Email</label>
-                                                <input type="email" class="form-control" id="email" name="email" placeholder="Enter your email" required>
+                                                <label for="from_email">Your Email</label>
+                                                <input type="email" class="form-control" id="from_email" name="from_email" placeholder="Enter your email" required>
                                             </div>
                                         </div>
                                         
@@ -1162,7 +1152,7 @@ $metaDescription = "Commerce Lab offers hands-on learning experiences in ERP sys
                                             <textarea class="form-control" id="message" name="message" rows="5" placeholder="How can we help you?" required></textarea>
                                         </div>
                                         
-                                        <button type="submit" class="submit-btn">
+                                        <button type="submit" class="submit-btn" id="submitBtn">
                                             <span class="submit-text">Send Message</span>
                                             <span class="submit-icon"><i class="fas fa-paper-plane"></i></span>
                                         </button>
@@ -1293,6 +1283,102 @@ $metaDescription = "Commerce Lab offers hands-on learning experiences in ERP sys
                     disable: window.innerWidth < 768 ? true : false
                 });
             }, 500);
+        });
+    </script>
+    
+    <!-- EmailJS Integration -->
+    <script>
+        // Initialize EmailJS
+        (function() {
+            emailjs.init('5IbnFnYpBTWNzsSaM'); // Your public key
+        })();
+
+        // Contact form handling
+        document.addEventListener('DOMContentLoaded', function() {
+            const contactForm = document.getElementById('contactForm');
+            const submitBtn = document.getElementById('submitBtn');
+            const submitText = submitBtn.querySelector('.submit-text');
+            const submitIcon = submitBtn.querySelector('.submit-icon i');
+
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+
+                // Get form data
+                const formData = new FormData(contactForm);
+                const templateParams = {
+                    from_name: formData.get('from_name'),
+                    from_email: formData.get('from_email'),
+                    subject: formData.get('subject'),
+                    message: formData.get('message'),
+                    to_name: 'Commerce Lab Team'
+                };
+
+                // Validate required fields
+                if (!templateParams.from_name || !templateParams.from_email || !templateParams.message) {
+                    showAlert('Please fill in all required fields.', 'error');
+                    return;
+                }
+
+                // Update button state
+                setButtonLoading(true);
+
+                // Send email using EmailJS
+                emailjs.send('service_ysh3wii', 'template_rigmswp', templateParams)
+                    .then(function(response) {
+                        console.log('SUCCESS!', response.status, response.text);
+                        showAlert('Thank you for your message! We\'ll get back to you as soon as possible.', 'success');
+                        contactForm.reset();
+                        
+                        // Track successful form submission
+                        if (typeof gtag !== 'undefined') {
+                            gtag('event', 'contact_form_submit', {
+                                event_category: 'engagement',
+                                event_label: 'contact_form'
+                            });
+                        }
+                    })
+                    .catch(function(error) {
+                        console.error('FAILED...', error);
+                        showAlert('Sorry, there was a problem sending your message. Please try again later.', 'error');
+                    })
+                    .finally(function() {
+                        setButtonLoading(false);
+                    });
+            });
+
+            function setButtonLoading(loading) {
+                if (loading) {
+                    submitBtn.disabled = true;
+                    submitText.textContent = 'Sending...';
+                    submitIcon.className = 'fas fa-spinner fa-spin';
+                } else {
+                    submitBtn.disabled = false;
+                    submitText.textContent = 'Send Message';
+                    submitIcon.className = 'fas fa-paper-plane';
+                }
+            }
+
+            function showAlert(message, type) {
+                // Remove existing alerts
+                const existingAlerts = contactForm.querySelectorAll('.alert');
+                existingAlerts.forEach(alert => alert.remove());
+
+                // Create new alert
+                const alertDiv = document.createElement('div');
+                alertDiv.className = `alert alert-${type === 'success' ? 'success' : 'danger'}`;
+                alertDiv.textContent = message;
+
+                // Insert alert before the form
+                contactForm.parentNode.insertBefore(alertDiv, contactForm);
+
+                // Auto-hide alert after 5 seconds
+                setTimeout(() => {
+                    alertDiv.remove();
+                }, 5000);
+
+                // Scroll to alert
+                alertDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
         });
     </script>
 </body>

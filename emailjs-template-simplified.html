@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <style>
+        body { font-family: 'Poppins', Arial, sans-serif; margin: 0; padding: 20px; background-color: #F5F5F5; }
+        .container { max-width: 600px; margin: 0 auto; background: white; border-radius: 24px; overflow: hidden; box-shadow: 0 8px 30px rgba(0,0,0,0.08); }
+        .header { background: linear-gradient(135deg, #336699 0%, #235689 100%); color: white; padding: 40px 30px; text-align: center; }
+        .header h1 { font-size: 32px; margin: 0 0 8px 0; font-weight: 800; }
+        .badge { background: rgba(255,255,255,0.2); color: white; padding: 8px 16px; border-radius: 40px; font-size: 14px; font-weight: 600; }
+        .content { padding: 40px 30px; }
+        .notification { background: linear-gradient(135deg, rgba(51,102,153,0.05), rgba(102,204,255,0.05)); border: 1px solid rgba(51,102,153,0.1); border-radius: 12px; padding: 24px; margin-bottom: 32px; border-left: 4px solid #336699; }
+        .card { background: white; border-radius: 24px; padding: 32px; margin: 24px 0; box-shadow: 0 6px 20px rgba(0,0,0,0.05); border: 1px solid rgba(0,0,0,0.05); }
+        .field { margin-bottom: 20px; padding-bottom: 15px; border-bottom: 1px solid #F5F5F5; }
+        .field:last-child { border-bottom: none; }
+        .label { font-weight: 600; color: #336699; font-size: 12px; text-transform: uppercase; margin-bottom: 8px; }
+        .value { font-size: 16px; color: #212121; font-weight: 500; }
+        .value a { color: #FF9933; text-decoration: none; font-weight: 600; }
+        .message { background: #F5F5F5; padding: 24px; border-radius: 12px; border: 1px solid rgba(0,0,0,0.05); white-space: pre-wrap; line-height: 1.7; }
+        .button { display: inline-block; background: linear-gradient(135deg, #FF9933 0%, #E68A00 100%); color: white; padding: 16px 32px; border-radius: 40px; text-decoration: none; font-weight: 600; margin: 20px 0; }
+        .footer { background: #212121; color: white; padding: 40px 30px; text-align: center; }
+        .footer h3 { margin: 0 0 16px 0; font-size: 24px; font-weight: 800; }
+        .contact-info { font-size: 13px; color: rgba(255,255,255,0.8); margin: 5px 0; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Commerce Lab</h1>
+            <div class="badge">New Contact Form Submission</div>
+        </div>
+        
+        <div class="content">
+            <div class="notification">
+                <strong>📧 New Message Received</strong><br>
+                You have received a new inquiry through your Commerce Lab website contact form.
+            </div>
+            
+            <div class="card">
+                <div class="field">
+                    <div class="label">👤 From</div>
+                    <div class="value">{{from_name}}</div>
+                </div>
+                
+                <div class="field">
+                    <div class="label">📧 Email Address</div>
+                    <div class="value"><a href="mailto:{{from_email}}">{{from_email}}</a></div>
+                </div>
+                
+                <div class="field">
+                    <div class="label">📝 Subject</div>
+                    <div class="value">{{subject}}</div>
+                </div>
+                
+                <div class="field">
+                    <div class="label">💬 Message</div>
+                    <div class="message">{{message}}</div>
+                </div>
+            </div>
+            
+            <div style="text-align: center;">
+                <a href="mailto:{{from_email}}?subject=Re: {{subject}}" class="button">
+                    Reply to {{from_name}} →
+                </a>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <h3>Commerce Lab</h3>
+            <div class="contact-info">Business Simulation & ERP Training Center</div>
+            <div class="contact-info">📍 #3, Pooja Arcade, Deshpande Nagar, Hubli</div>
+            <div class="contact-info">📞 0836-2257865 | 0836-2370786 | 9448110341</div>
+            <div class="contact-info">✉️ info@commercelab.in</div>
+            <div style="margin-top: 20px; font-size: 12px; opacity: 0.5;">
+                © 2025 Commerce Lab - A Unit of Nakshatra Technologies
+            </div>
+        </div>
+    </div>
+</body>
+</html>

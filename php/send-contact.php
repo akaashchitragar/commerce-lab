@@ -7,11 +7,17 @@ header('Content-Type: application/json');
 
 // Check if form was submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Get form data and sanitize it
-    $name = filter_var($_POST['name'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-    $email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
-    $subject = filter_var($_POST['subject'], FILTER_SANITIZE_FULL_SPECIAL_CHARS) ?: 'New Contact Form Submission';
-    $message = filter_var($_POST['message'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+    // Get form data and sanitize it - support both old and new field names
+    $name = isset($_POST['from_name']) ? $_POST['from_name'] : ($_POST['name'] ?? '');
+    $email = isset($_POST['from_email']) ? $_POST['from_email'] : ($_POST['email'] ?? '');
+    $subject = $_POST['subject'] ?? 'New Contact Form Submission';
+    $message = $_POST['message'] ?? '';
+    
+    // Sanitize the data
+    $name = filter_var($name, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+    $email = filter_var($email, FILTER_SANITIZE_EMAIL);
+    $subject = filter_var($subject, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+    $message = filter_var($message, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
     
     // Validate data
     $errors = [];
